@@ -1,22 +1,22 @@
 ﻿import type { Metadata } from "next";
 
 import {
-  Geist,
   Geist_Mono,
   Instrument_Serif,
+  Space_Grotesk,
 } from "next/font/google";
 
 import "./globals.css";
 
-const geist = Geist({
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  variable: "--font-geist",
+  variable: "--font-sans",
   display: "swap",
 });
 
 const geistMono = Geist_Mono({
   subsets: ["latin"],
-  variable: "--font-geist-mono",
+  variable: "--font-mono",
   display: "swap",
 });
 
@@ -27,10 +27,84 @@ const instrumentSerif = Instrument_Serif({
   display: "swap",
 });
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  "http://localhost:3000";
+
+const title =
+  "Jacob Wiseman — IT Portfolio";
+
+const description =
+  "IT support, networking, infrastructure, systems, homelab projects, and technical work by Jacob Wiseman.";
+
 export const metadata: Metadata = {
-  title: "Jacob Wiseman — IT Portfolio",
-  description:
-    "IT support, networking, infrastructure, systems, and technical projects by Jacob Wiseman.",
+  metadataBase: new URL(siteUrl),
+
+  title: {
+    default: title,
+    template: "%s — Jacob Wiseman",
+  },
+
+  description,
+
+  applicationName:
+    "Jacob Wiseman Portfolio",
+
+  authors: [
+    {
+      name: "Jacob Wiseman",
+    },
+  ],
+
+  creator: "Jacob Wiseman",
+
+  openGraph: {
+    title,
+    description,
+    url: "/",
+    siteName:
+      "Jacob Wiseman Portfolio",
+    type: "website",
+    locale: "en_US",
+
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Jacob Wiseman — IT Portfolio",
+      },
+    ],
+  },
+
+  twitter: {
+    card:
+      "summary_large_image",
+
+    title,
+    description,
+
+    images: [
+      "/opengraph-image",
+    ],
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+  },
+
+  icons: {
+    icon: [
+      {
+        url: "/favicon.ico",
+      },
+      {
+        url: "/icon.svg",
+        type: "image/svg+xml",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
@@ -39,9 +113,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      data-scroll-behavior="smooth"
+    >
       <body
-        className={`${geist.variable} ${geistMono.variable} ${instrumentSerif.variable}`}
+        className={`
+          ${spaceGrotesk.variable}
+          ${geistMono.variable}
+          ${instrumentSerif.variable}
+        `}
       >
         {children}
       </body>

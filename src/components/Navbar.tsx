@@ -1,8 +1,17 @@
 ﻿"use client";
 
-import { useState } from "react";
+import {
+  useEffect,
+  useState,
+} from "react";
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+
+import {
+  AnimatePresence,
+  motion,
+} from "motion/react";
 
 import {
   Menu,
@@ -10,128 +19,141 @@ import {
 } from "lucide-react";
 
 const links = [
-  {
-    name: "Experience",
-    href: "/experience",
-  },
-  {
-    name: "Projects",
-    href: "/projects",
-  },
-  {
-    name: "About",
-    href: "/about",
-  },
-  {
-    name: "Contact",
-    href: "/contact",
-  },
+  { label: "Experience", href: "/experience" },
+  { label: "Projects", href: "/projects" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
   const pathname = usePathname();
+  const [open, setOpen] = useState(false);
 
-  const [menuOpen, setMenuOpen] =
-    useState(false);
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
 
-  function isActive(href: string) {
-    return (
-      pathname === href ||
-      pathname.startsWith(`${href}/`)
-    );
+  useEffect(() => {
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setOpen(false);
+      }
+    }
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
+
+  function active(href: string) {
+    return pathname === href || pathname.startsWith(`${href}/`);
   }
 
   return (
-    <>
-      <nav className="relative z-50 flex h-24 items-center justify-between border-b border-white/[0.1]">
+    <nav className="relative z-[100] border-b border-white/[0.08]">
+      <div className="flex h-[84px] items-center justify-between">
         <Link
           href="/"
           className="group flex items-center gap-3"
-          onClick={() => setMenuOpen(false)}
+          aria-label="Jacob Wiseman home"
         >
-          <span className="flex h-8 w-8 items-center justify-center border border-white/15 text-[11px] font-semibold tracking-[-0.03em] transition group-hover:border-[#315cff] group-hover:bg-[#315cff]">
+          <span className="flex h-9 w-9 items-center justify-center border border-white/15 font-mono-custom text-[9px] tracking-[-0.02em] text-[#F2F0EA] transition duration-300 group-hover:border-[#315CFF] group-hover:bg-[#315CFF]">
             JW
           </span>
 
-          <span className="hidden text-[13px] font-medium uppercase tracking-[0.15em] text-neutral-300 sm:block">
+          <span className="hidden text-sm font-medium tracking-[-0.025em] text-[#F2F0EA] sm:block">
             Jacob Wiseman
           </span>
         </Link>
 
-        <div className="hidden items-center gap-9 md:flex">
+        <div className="hidden items-center gap-8 lg:flex">
           {links.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className={`relative text-[14px] transition ${
-                isActive(link.href)
-                  ? "text-white"
-                  : "text-neutral-500 hover:text-white"
+              className={`relative py-2 text-sm transition duration-200 ${
+                active(link.href)
+                  ? "text-[#F2F0EA]"
+                  : "text-neutral-500 hover:text-[#F2F0EA]"
               }`}
             >
-              {link.name}
+              {link.label}
 
-              {isActive(link.href) && (
-                <span className="absolute -bottom-2 left-0 h-[2px] w-full bg-[#315cff]" />
+              {active(link.href) && (
+                <motion.span
+                  layoutId="nav-active"
+                  className="absolute -bottom-[31px] left-0 h-px w-full bg-[#315CFF]"
+                />
               )}
             </Link>
           ))}
-        </div>
 
-        <div className="flex items-center gap-3">
           <a
             href="/resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden text-[13px] text-neutral-500 transition hover:text-white sm:block"
+            className="border-l border-white/[0.08] pl-8 text-sm text-[#D8D0C0] transition hover:text-white"
           >
             Resume ↗
           </a>
-
-          <button
-            type="button"
-            onClick={() =>
-              setMenuOpen((current) => !current)
-            }
-            className="flex h-11 w-11 items-center justify-center border border-white/10 text-neutral-300 md:hidden"
-            aria-label="Toggle menu"
-          >
-            {menuOpen ? (
-              <X size={18} />
-            ) : (
-              <Menu size={18} />
-            )}
-          </button>
         </div>
-      </nav>
 
-      {menuOpen && (
-        <div className="relative z-40 border-b border-white/10 bg-[#0a0a0a] py-4 md:hidden">
-          {links.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setMenuOpen(false)}
-              className="flex items-center justify-between border-b border-white/[0.06] py-5 text-2xl tracking-[-0.04em] last:border-b-0"
+        <button
+          type="button"
+          aria-label={open ? "Close navigation menu" : "Open navigation menu"}
+          aria-expanded={open}
+          aria-controls="mobile-navigation"
+          onClick={() => setOpen((current) => !current)}
+          className="flex h-11 w-11 touch-manipulation items-center justify-center border border-white/[0.1] text-[#F2F0EA] transition hover:border-[#315CFF] lg:hidden"
+        >
+          {open ? <X size={18} /> : <Menu size={18} />}
+        </button>
+      </div>
+
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            id="mobile-navigation"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2 }}
+            className="absolute inset-x-0 top-[84px] z-[120] border-b border-white/[0.08] bg-[#070708]/95 px-1 py-4 shadow-[0_30px_70px_rgba(0,0,0,.5)] backdrop-blur-xl lg:hidden"
+          >
+            {links.map((link, index) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setOpen(false)}
+                className="group flex min-h-14 items-center justify-between border-b border-white/[0.07] px-3"
+              >
+                <span
+                  className={`text-lg tracking-[-0.035em] ${
+                    active(link.href)
+                      ? "text-[#F2F0EA]"
+                      : "text-neutral-500 group-hover:text-[#F2F0EA]"
+                  }`}
+                >
+                  {link.label}
+                </span>
+
+                <span className="font-mono-custom text-[8px] tracking-[0.16em] text-neutral-700">
+                  0{index + 1}
+                </span>
+              </Link>
+            ))}
+
+            <a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 flex min-h-12 items-center justify-between px-3 text-sm text-[#D8D0C0]"
             >
-              {link.name}
-
-              <span className="text-sm text-[#315cff]">
-                ↗
-              </span>
-            </Link>
-          ))}
-
-          <a
-            href="/resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-4 block py-3 text-sm text-neutral-500"
-          >
-            Resume ↗
-          </a>
-        </div>
-      )}
-    </>
+              Resume
+              <span>↗</span>
+            </a>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </nav>
   );
 }
