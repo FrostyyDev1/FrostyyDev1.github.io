@@ -69,7 +69,7 @@ export const metadata: Metadata = {
 
     images: [
       {
-        url: "/opengraph-image",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "Jacob Wiseman — IT Portfolio",
@@ -85,7 +85,7 @@ export const metadata: Metadata = {
     description,
 
     images: [
-      "/opengraph-image",
+      "/og-image.png",
     ],
   },
 
@@ -129,3 +129,4 @@ export default function RootLayout({
     </html>
   );
 }
+
