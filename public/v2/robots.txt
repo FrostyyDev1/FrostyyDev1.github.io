@@ -1,0 +1,4 @@
+User-Agent: *
+Allow: /
+
+Sitemap: https://frostyydev1.github.io/v2/sitemap.xml
