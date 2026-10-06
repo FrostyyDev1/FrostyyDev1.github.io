@@ -1,21 +1,72 @@
-import Navbar from "@/components/Navbar";
+import { Rich } from "@/components/site/RichText";
+import { revealProps } from "@/components/site/reveal-props";
+import { site } from "@/content/site";
+import { pageMeta } from "@/lib/meta";
+
+export const metadata = pageMeta({
+  title: "Contact",
+  description:
+    "Contact Jacob Wiseman for IT support, help desk, and desktop support roles. Email, LinkedIn, and résumé.",
+  path: "/contact/",
+});
 
 export default function ContactPage() {
+  const phoneIsPlaceholder = site.phone.includes("[");
+
   return (
-    <main className="min-h-screen bg-[#090909] text-white">
-      <div className="mx-auto w-full max-w-[1800px] px-6 md:px-10 lg:px-14 xl:px-16">
-        <Navbar />
-
-        <section className="py-24 md:py-32">
-          <p className="mb-6 text-sm uppercase tracking-[0.2em] text-neutral-500">
-            04 / Contact
+    <section className="section contact" aria-labelledby="contact-page-title" style={{ borderTop: 0 }}>
+      <div className="container">
+        <header className="section-head" {...revealProps()} style={{ marginBottom: "var(--s-7)" }}>
+          <p className="t-label index">
+            <b>01</b> Contact
           </p>
-
-          <h1 className="text-[clamp(4rem,9vw,10rem)] font-medium uppercase leading-[0.8] tracking-[-0.06em]">
-            Let's Talk
-          </h1>
-        </section>
+        </header>
+        <h1 id="contact-page-title" {...revealProps()}>
+          {site.contactTitleLead} <span className="t-serif">{site.contactTitleAccent}</span>
+        </h1>
+        <p className="t-lead" style={{ marginTop: "var(--s-6)" }} {...revealProps()}>
+          {site.contactLede} <Rich text={site.reply} />
+        </p>
+        <a className="contact-mail" href={`mailto:${site.email}`} {...revealProps()}>
+          <span className="ph">{site.email}</span>
+          <span className="arrow" aria-hidden="true">
+            →
+          </span>
+        </a>
+        <dl className="contact-meta" {...revealProps()}>
+          <div>
+            <dt className="t-label">LinkedIn</dt>
+            <dd>
+              <a href={site.linkedinHref} target="_blank" rel="noopener noreferrer">
+                {site.linkedinLabel}
+                <span className="sr-only"> (opens in a new tab)</span>
+              </a>
+            </dd>
+          </div>
+          <div>
+            <dt className="t-label">Résumé</dt>
+            <dd>
+              <a href={site.resumeHref}>Download PDF (1 page)</a>
+            </dd>
+          </div>
+          <div>
+            <dt className="t-label">Phone</dt>
+            <dd>
+              {phoneIsPlaceholder ? (
+                <span className="ph">{site.phone}</span>
+              ) : (
+                <a href={`tel:${site.phone}`}>{site.phone}</a>
+              )}
+            </dd>
+          </div>
+          <div>
+            <dt className="t-label">Location</dt>
+            <dd>
+              {site.locationLine} · <Rich text={site.availability} />
+            </dd>
+          </div>
+        </dl>
       </div>
-    </main>
+    </section>
   );
 }
