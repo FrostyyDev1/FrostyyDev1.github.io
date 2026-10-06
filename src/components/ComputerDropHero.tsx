@@ -298,8 +298,8 @@ export default function ComputerDropHero() {
         break;
 
       case "resume":
-        window.open("/resume.pdf", "_blank", "noopener,noreferrer");
-        append({ type: "output", lines: ["", "Opening /resume.pdf ...", ""] });
+        window.open("/resume-public.pdf", "_blank", "noopener,noreferrer");
+        append({ type: "output", lines: ["", "Opening /resume-public.pdf ...", ""] });
         break;
 
       case "photo":

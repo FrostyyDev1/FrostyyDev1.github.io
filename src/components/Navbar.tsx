@@ -88,7 +88,7 @@ export default function Navbar() {
           ))}
 
           <a
-            href="/resume.pdf"
+            href="/resume-public.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="border-l border-white/[0.08] pl-8 text-sm text-[#D8D0C0] transition hover:text-white"
@@ -143,7 +143,7 @@ export default function Navbar() {
             ))}
 
             <a
-              href="/resume.pdf"
+              href="/resume-public.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-4 flex min-h-12 items-center justify-between px-3 text-sm text-[#D8D0C0]"
