@@ -54,9 +54,10 @@
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scroll-padding-top:calc(var(--nav-h) + 24px);background:var(--bg)}
 @media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
-body{margin:0;overflow-x:clip;background:var(--bg);color:var(--text-1);font:400 var(--fs-body)/1.65 var(--font-sans),ui-sans-serif,system-ui,sans-serif;
+body{margin:0;min-height:100vh;display:flex;flex-direction:column;overflow-x:clip;background:var(--bg);color:var(--text-1);font:400 var(--fs-body)/1.65 var(--font-sans),ui-sans-serif,system-ui,sans-serif;
   -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
 img,svg{display:block;max-width:100%}
+main{flex:1 0 auto}
 a{color:inherit;text-decoration:none}
 button,input{font:inherit;color:inherit}
 h1,h2,h3,h4,p,ul,ol,dl,dd,figure{margin:0}
@@ -101,7 +102,7 @@ ul,ol{padding:0;list-style:none}
 .site-nav{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--line);
   background:rgba(10,10,11,.82);-webkit-backdrop-filter:saturate(140%) blur(14px);backdrop-filter:saturate(140%) blur(14px)}
 .nav-inner{height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;gap:24px}
-.wordmark{display:inline-flex;align-items:center;gap:12px;font-weight:600;font-size:16px;letter-spacing:-.01em;color:var(--text-1)}
+.wordmark{display:inline-flex;align-items:center;gap:12px;flex:none;white-space:nowrap;min-height:44px;font-weight:600;font-size:16px;letter-spacing:-.01em;color:var(--text-1)}
 .wordmark .mark{width:9px;height:9px;background:var(--accent);flex:none}
 .wordmark .role{font:500 12px/1 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--text-3);
   padding-left:12px;border-left:1px solid var(--line-strong)}
@@ -493,9 +494,9 @@ h1,h2,h3,.cs-title .sub,.about-statement{text-wrap:balance}
 .t-body,.t-lead,.xp-desc,.covers{text-wrap:pretty}
 
 /* ---------- site additions ---------- */
-.nav-links a{min-height:44px;display:inline-flex;align-items:center}
+.nav-links a{min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center;padding-inline:6px}
 .pill{min-height:44px}
-.footer-grid nav a,.to-top{min-height:44px;display:inline-flex;align-items:center}
+.footer-grid nav a,.to-top{min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center;padding-inline:6px}
 .proof-row a{min-height:44px}
 .contact-meta a{display:inline-flex;align-items:center;min-height:44px}
 .contact-mail{overflow-wrap:anywhere}
@@ -507,13 +508,13 @@ h1,h2,h3,.cs-title .sub,.about-statement{text-wrap:balance}
 a .badge-mini.badge-img, .badge-mini.badge-img{width:36px;height:36px;border:0;border-radius:0}
 .callout{margin-top:var(--s-6);padding:18px 20px;border:1px dashed rgba(217,207,188,.55);color:var(--text-2);font-size:15px;line-height:1.55;max-width:74ch}
 .role-list{border-top:1px solid var(--line)}
-.role{display:grid;grid-template-columns:minmax(140px,220px) minmax(0,1fr);gap:10px 48px;padding-block:36px;border-bottom:1px solid var(--line)}
-.role .when{font:500 13px/1.6 var(--font-mono);letter-spacing:.04em;color:var(--text-3);padding-top:8px}
-.role h3{font:500 clamp(22px,2vw,30px)/1.2 var(--font-sans);letter-spacing:-.018em}
-.role .org{margin-top:6px;font-size:15px;color:var(--ivory)}
-.role .lede{margin-top:14px;color:var(--text-2);font-size:16px;line-height:1.65;max-width:68ch}
-.role .xp-points{margin:16px 0 0;padding-left:1.15em;list-style:disc;color:var(--text-2)}
-.role .xp-points li{display:list-item;margin-top:8px;padding:0;border:0;font-size:16px;line-height:1.65}
+.role-list > .role{display:grid;grid-template-columns:minmax(140px,220px) minmax(0,1fr);gap:10px 48px;padding-block:36px;border-bottom:1px solid var(--line)}
+.role-list .when{font:500 13px/1.6 var(--font-mono);letter-spacing:.04em;color:var(--text-3);padding-top:8px}
+.role-list h3{font:500 clamp(22px,2vw,30px)/1.2 var(--font-sans);letter-spacing:-.018em}
+.role-list .org{margin-top:6px;font-size:15px;color:var(--ivory)}
+.role-list .lede{margin-top:14px;color:var(--text-2);font-size:16px;line-height:1.65;max-width:68ch}
+.role-list .xp-points{margin:16px 0 0;padding-left:1.15em;list-style:disc;color:var(--text-2)}
+.role-list .xp-points li{display:list-item;margin-top:8px;padding:0;border:0;font-size:16px;line-height:1.65}
 .process{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
 .process li{padding:8px 28px 8px 0}
 .process li+li{border-left:1px solid var(--ivory-line);padding-left:28px}
@@ -538,7 +539,7 @@ a .badge-mini.badge-img, .badge-mini.badge-img{width:36px;height:36px;border:0;b
 .section-head h1{grid-column:1 / span 7}
 .contact h1{font:600 clamp(52px,8.4vw,128px)/.94 var(--font-sans);letter-spacing:-.04em}
 .contact h1 .t-serif{display:block;color:var(--ivory);letter-spacing:-.02em;font-size:1.06em;line-height:1.02;margin-top:.04em}
-.role h2{font:500 clamp(22px,2vw,30px)/1.2 var(--font-sans);letter-spacing:-.018em}
+.role-list h2{font:500 clamp(22px,2vw,30px)/1.2 var(--font-sans);letter-spacing:-.018em}
 .band-ivory .link-arrow{color:var(--ivory-ink)}
 .band-ivory .link-arrow:hover{border-bottom-color:var(--ivory-ink-3)}
 .band-ivory .stack-links{margin-top:var(--s-7)}
@@ -552,7 +553,7 @@ a .badge-mini.badge-img, .badge-mini.badge-img{width:36px;height:36px;border:0;b
 }
 
 @media (max-width:600px){
-  .role{grid-template-columns:1fr;gap:8px}
+  .role-list > .role{grid-template-columns:1fr;gap:8px}
   .process{grid-template-columns:1fr}
   .process li+li,.process li:nth-child(even){border-left:0;padding-left:0;border-top:1px solid var(--ivory-line);padding-top:22px;margin-top:8px}
 }
