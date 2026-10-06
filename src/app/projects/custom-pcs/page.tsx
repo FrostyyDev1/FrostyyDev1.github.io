@@ -1,33 +1,36 @@
-﻿"use client";
+﻿import Link from "next/link";
 
-import { useEffect } from "react";
-import Link from "next/link";
+import { ClientRedirect } from "@/app/projects/custom-pcs/redirect";
+import { pageMeta } from "@/lib/meta";
 
-export default function LegacyCustomPCsPage() {
-  useEffect(() => {
-    window.location.replace(
-      "/projects/northstar-it/"
-    );
-  }, []);
+export const metadata = {
+  ...pageMeta({
+    title: "Project moved",
+    description: "Custom PCs now lives on the PC repair and builds case study.",
+    path: "/projects/northstar-it/",
+  }),
+  robots: { index: false, follow: true },
+};
 
+export default function CustomPcsRedirectPage() {
   return (
-    <main className="flex min-h-screen items-center justify-center bg-[#070708] px-6 text-[#F2F0EA]">
-      <div className="text-center">
-        <p className="font-mono-custom text-[9px] uppercase tracking-[0.24em] text-[#315CFF]">
-          Project moved
-        </p>
-
-        <h1 className="mt-5 text-4xl font-semibold tracking-[-0.05em]">
-          Redirecting to NorthStar IT.
+    <section className="redirect-page">
+      <div className="container">
+        <meta httpEquiv="refresh" content="0; url=/projects/northstar-it/" />
+        <ClientRedirect href="/projects/northstar-it/" />
+        <p className="t-label">Project moved</p>
+        <h1 className="t-h1" style={{ margin: "24px 0" }}>
+          Custom PCs is part of PC repair.
         </h1>
-
-        <Link
-          href="/projects/northstar-it/"
-          className="mt-8 inline-block text-sm text-neutral-500 transition hover:text-white"
-        >
-          Continue manually
-        </Link>
+        <p className="t-lead">
+          That duplicate project page now points at the repair case study.
+        </p>
+        <div className="hero-ctas">
+          <Link className="btn btn-primary" href="/projects/northstar-it">
+            Continue to PC repair
+          </Link>
+        </div>
       </div>
-    </main>
+    </section>
   );
 }

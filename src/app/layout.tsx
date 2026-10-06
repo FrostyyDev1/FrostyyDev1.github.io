@@ -1,110 +1,83 @@
-﻿import type { Metadata } from "next";
+﻿import type { Metadata, Viewport } from "next";
+import { Geist_Mono, Instrument_Sans, Instrument_Serif } from "next/font/google";
 
-import {
-  Geist_Mono,
-  Instrument_Serif,
-  Space_Grotesk,
-} from "next/font/google";
+import { SiteFooter } from "@/components/site/Footer";
+import { SiteHeader } from "@/components/site/Header";
+import { RevealController } from "@/components/site/Reveal";
+import { site, siteUrl } from "@/content/site";
 
 import "./globals.css";
 
-const spaceGrotesk = Space_Grotesk({
+const sans = Instrument_Sans({
   subsets: ["latin"],
+  weight: "variable",
+  style: "normal",
   variable: "--font-sans",
   display: "swap",
 });
 
-const geistMono = Geist_Mono({
+const serif = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  variable: "--font-serif",
+  display: "swap",
+});
+
+const mono = Geist_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
   display: "swap",
 });
 
-const instrumentSerif = Instrument_Serif({
-  subsets: ["latin"],
-  weight: "400",
-  variable: "--font-serif",
-  display: "swap",
-});
-
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ??
-  "http://localhost:3000";
-
-const title =
-  "Jacob Wiseman — IT Portfolio";
-
 const description =
-  "IT support, networking, infrastructure, systems, homelab projects, and technical work by Jacob Wiseman.";
+  "Jacob Wiseman: entry-level IT support professional with CompTIA A+, Network+, and ITIL 4 Foundation. Homelab and PC repair case studies, experience, and contact.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-
   title: {
-    default: title,
+    default: "Jacob Wiseman — IT Support, Desktop Support & Networking",
     template: "%s — Jacob Wiseman",
   },
-
   description,
-
-  applicationName:
-    "Jacob Wiseman Portfolio",
-
-  authors: [
-    {
-      name: "Jacob Wiseman",
-    },
-  ],
-
-  creator: "Jacob Wiseman",
-
+  applicationName: "Jacob Wiseman Portfolio",
+  authors: [{ name: site.name }],
+  creator: site.name,
   openGraph: {
-    title,
+    title: "Jacob Wiseman — IT Support, Desktop Support & Networking",
     description,
     url: "/",
-    siteName:
-      "Jacob Wiseman Portfolio",
+    siteName: "Jacob Wiseman",
     type: "website",
     locale: "en_US",
-
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Jacob Wiseman — IT Portfolio",
+        alt: site.ogAlt,
       },
     ],
   },
-
   twitter: {
-    card:
-      "summary_large_image",
-
-    title,
+    card: "summary_large_image",
+    title: "Jacob Wiseman — IT Support, Desktop Support & Networking",
     description,
-
-    images: [
-      "/og-image.png",
-    ],
+    images: ["/og-image.png"],
   },
-
-  robots: {
-    index: true,
-    follow: true,
-  },
-
+  robots: { index: true, follow: true },
   icons: {
     icon: [
-      {
-        url: "/favicon.ico",
-      },
-      {
-        url: "/icon.svg",
-        type: "image/svg+xml",
-      },
+      { url: "/favicon.ico" },
+      { url: "/icon.svg", type: "image/svg+xml" },
     ],
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0A0A0B",
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({
@@ -115,18 +88,22 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      data-scroll-behavior="smooth"
+      className={`${sans.variable} ${serif.variable} ${mono.variable}`}
     >
-      <body
-        className={`
-          ${spaceGrotesk.variable}
-          ${geistMono.variable}
-          ${instrumentSerif.variable}
-        `}
-      >
-        {children}
+      <body>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "document.documentElement.classList.add('js')",
+          }}
+        />
+        <a className="skip" href="#main">
+          Skip to content
+        </a>
+        <SiteHeader />
+        <RevealController />
+        <main id="main">{children}</main>
+        <SiteFooter />
       </body>
     </html>
   );
 }
-
