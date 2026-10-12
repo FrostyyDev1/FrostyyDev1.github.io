@@ -1,10 +1,9 @@
 ﻿import Link from "next/link";
 
 import CertGrid from "@/components/CertGrid";
-import Portrait from "@/components/Portrait";
+import HomeTerminal from "@/components/HomeTerminal";
 import ProjectArt from "@/components/ProjectArt";
 import {
-  certifications,
   contactEmailHref,
   contactEmailLabel,
   person,
@@ -18,47 +17,7 @@ export default function HomePage() {
 
   return (
     <main id="main">
-      <section className="container hero">
-        <div className="hero-copy">
-          <p className="t-label">
-            IT support · Desktop support · Networking — Charleston, WV
-          </p>
-          <h1 className="t-display">
-            Jacob <span className="name-accent">Wiseman</span>
-          </h1>
-          <p className="t-lead">
-            IT support technician with CompTIA A+, Network+, and ITIL 4
-            Foundation. I troubleshoot Windows PCs and hardware, run a
-            Raspberry Pi homelab, and explain fixes in plain language.
-          </p>
-          <div className="hero-ctas">
-            <a className="btn btn-primary" href={person.resumeHref}>
-              Download résumé (PDF)
-            </a>
-            <a className="btn btn-ghost" href={contactEmailHref}>
-              {contactEmailLabel}
-            </a>
-            <a
-              className="link-quiet"
-              href={person.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              LinkedIn
-              <span aria-hidden="true"> ↗</span>
-              <span className="sr-only"> (opens in a new tab)</span>
-            </a>
-          </div>
-          <ul className="proof-row">
-            {certifications.map((cert) => (
-              <li key={cert.id}>
-                <a href="/certifications/">{cert.name}</a>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <Portrait />
-      </section>
+      <HomeTerminal />
 
       <section className="section" aria-labelledby="work-title">
         <div className="container">

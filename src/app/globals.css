@@ -613,15 +613,16 @@
 }
 
 .cert-logo {
-  background: var(--ivory-surface);
-  min-height: 108px;
+  background: #07080c;
+  min-height: 180px;
   display: grid;
   place-items: center;
   padding: 16px;
+  border: 1px solid var(--line);
 }
 
 .cert-logo img {
-  width: min(100%, 210px);
+  width: min(100%, 168px);
   height: auto;
 }
 
@@ -1062,6 +1063,233 @@
 .tower i:first-child {
   background: var(--ivory);
   height: 8px;
+}
+
+.term-hero {
+  padding-block: 24px 8px;
+}
+
+.term {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100svh - var(--nav-h) - 48px);
+  max-height: calc(100svh - var(--nav-h) - 32px);
+  background: #0c0d11;
+  border: 1px solid var(--line);
+  box-shadow: inset 3px 0 0 var(--accent);
+  color: var(--text-1);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.term-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 52px;
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.term-title {
+  margin: 0;
+  color: var(--ivory);
+  font: 500 14px/1.2 var(--font-mono), ui-monospace, monospace;
+  letter-spacing: 0;
+}
+
+.term-skip {
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0 14px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--text-1);
+  font: 500 14px/1 var(--font-mono), ui-monospace, monospace;
+}
+
+.term-skip:hover {
+  border-color: var(--accent-text);
+  color: var(--ivory);
+}
+
+.term-log {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 18px 16px 8px;
+}
+
+.term-block + .term-block {
+  margin-top: 16px;
+}
+
+.term-cmd,
+.term-out p,
+.term-form {
+  margin: 0;
+}
+
+.term-cmd {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 8px;
+  color: var(--text-1);
+}
+
+.term-prompt {
+  white-space: nowrap;
+}
+
+.term-user {
+  color: var(--ivory);
+}
+
+.term-at,
+.term-path {
+  color: var(--text-2);
+}
+
+.term-host {
+  color: var(--accent-text);
+}
+
+.term-out {
+  margin-top: 4px;
+  color: var(--text-2);
+  overflow-wrap: anywhere;
+}
+
+.term-out p + p {
+  margin-top: 2px;
+}
+
+.term-h1 {
+  margin: 0;
+  color: var(--ivory);
+  font: 600 22px/1.35 var(--font-mono), ui-monospace, monospace;
+  letter-spacing: 0;
+}
+
+.term-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+}
+
+.term-out a,
+.term-links a {
+  color: var(--accent-text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  min-height: 32px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.term-out a:hover,
+.term-links a:hover {
+  color: var(--ivory);
+}
+
+.term-form {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-top: 1px solid var(--line);
+}
+
+.term-form input {
+  flex: 1;
+  min-width: 0;
+  min-height: 44px;
+  border: 0;
+  background: transparent;
+  color: var(--text-1);
+  font: 400 16px/1.4 var(--font-mono), ui-monospace, monospace;
+  border-radius: 2px;
+}
+
+.term-form input::placeholder {
+  color: var(--text-3);
+}
+
+.term-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 4px 16px 16px;
+}
+
+.term-chips button {
+  min-height: 44px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  background: var(--surface-1);
+  color: var(--ivory);
+  font: 500 14px/1 var(--font-mono), ui-monospace, monospace;
+}
+
+.term-chips button:hover {
+  border-color: var(--accent-text);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .term:not(.is-settled) .term-boot .term-block {
+    animation: term-in 280ms both;
+  }
+
+  .term:not(.is-settled) .term-boot .term-block:nth-child(2) {
+    animation-delay: 220ms;
+  }
+
+  .term:not(.is-settled) .term-boot .term-block:nth-child(3) {
+    animation-delay: 440ms;
+  }
+
+  .term:not(.is-settled) .term-boot .term-block:nth-child(4) {
+    animation-delay: 660ms;
+  }
+}
+
+@keyframes term-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .term-skip {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .term {
+    font-size: 14px;
+    min-height: calc(100svh - var(--nav-h) - 28px);
+  }
+
+  .term-form {
+    flex-wrap: wrap;
+  }
+
+  .term-form input {
+    flex-basis: 100%;
+  }
+
+  .term-h1 {
+    font-size: 20px;
+  }
 }
 
 @media (prefers-reduced-motion: no-preference) {

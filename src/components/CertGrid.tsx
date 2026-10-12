@@ -9,10 +9,10 @@ export default function CertGrid() {
         <li className="cert" key={cert.id}>
           <div className="cert-logo">
             <Image
-              src={cert.logo}
-              alt={cert.logoAlt}
-              width={760}
-              height={240}
+              src={cert.image}
+              alt={cert.imageAlt}
+              width={320}
+              height={320}
             />
           </div>
           <div>

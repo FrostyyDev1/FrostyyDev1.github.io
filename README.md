@@ -35,7 +35,7 @@ Set `NEXT_PUBLIC_SITE_URL` when the canonical host is not `https://frostyydev1.g
 
 - **Email.** Search for `TODO: add email` and `mailto:TODO` in `src/content/site.ts`. Replace both with a real address. Do not add a phone number unless Jacob asks for one.
 - **Portrait.** The site uses a JW monogram. When a real photo exists, render it from `public/jacob-photo.jpg` in `src/components/Portrait.tsx`.
-- **Credential links.** CompTIA and ITIL wordmarks live in `public/certs/`. Add Credly or PeopleCert share URLs only when Jacob has them. Do not invent credential IDs.
+- **Credential links.** `public/certs/` holds the official Credly badge images for CompTIA A+ ce, CompTIA Network+ ce, and ITIL 4 Foundation. They are the public badge artwork, not Jacob's personal Credly or PeopleCert share URLs. Add those share links only when he has them. Do not invent credential IDs.
 - **Résumé.** The linked file is `public/resume-public.pdf` (same bytes as `public/resume.pdf`). It still lists an older company name and does not yet list ITIL 4 Foundation. Update that PDF so it matches NorthStar IT Services LLC and the certifications on the site.
 
 ## Pages

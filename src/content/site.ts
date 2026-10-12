@@ -26,13 +26,23 @@ export const person = {
 export const contactEmailLabel = "TODO: add email";
 export const contactEmailHref = "mailto:TODO";
 
+/**
+ * Official badge artwork from Credly organization pages.
+ * These are the public certification badges, not Jacob's personal share links.
+ * A+: https://www.credly.com/org/comptia/badge/comptia-a-ce-certification
+ *     https://images.credly.com/images/f6d62c5d-1e1d-4de6-92ee-8dc8c80b1c7b/blob
+ * Network+: https://www.credly.com/org/comptia/badge/comptia-network-ce-certification
+ *     https://images.credly.com/images/c70ba73e-3c8a-46fa-9d60-4a9af94ad662/blob
+ * ITIL 4: https://www.credly.com/org/peoplecert/badge/itil-4-foundation
+ *     https://images.credly.com/images/8b943c4b-c186-4e9f-84aa-004322b76eed/image.png
+ */
 export const certifications = [
   {
     id: "aplus",
     name: "CompTIA A+",
     issuer: "CompTIA",
-    logo: "/certs/comptia-logo.svg",
-    logoAlt: "CompTIA",
+    image: "/certs/comptia-a-plus.png",
+    imageAlt: "CompTIA A+ ce certification badge",
     earned: "October 2025",
     expires: "October 2028",
     description:
@@ -43,8 +53,8 @@ export const certifications = [
     id: "netplus",
     name: "CompTIA Network+",
     issuer: "CompTIA",
-    logo: "/certs/comptia-logo.svg",
-    logoAlt: "CompTIA",
+    image: "/certs/comptia-network-plus.png",
+    imageAlt: "CompTIA Network+ ce certification badge",
     earned: "October 2025",
     expires: null,
     description:
@@ -55,8 +65,8 @@ export const certifications = [
     id: "itil",
     name: "ITIL 4 Foundation",
     issuer: "PeopleCert",
-    logo: "/certs/itil-logo.svg",
-    logoAlt: "ITIL",
+    image: "/certs/itil-4-foundation.png",
+    imageAlt: "ITIL 4 Foundation certification badge",
     earned: "August 2025",
     expires: null,
     description:
