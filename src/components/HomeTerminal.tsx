@@ -103,9 +103,13 @@ function Block({ entry }: { entry: Entry }) {
   );
 }
 
-function certLines(): Line[] {
+function certLines(includeItil = true): Line[] {
+  const shown = includeItil
+    ? certifications
+    : certifications.filter((cert) => cert.id !== "itil");
+
   return [
-    ...certifications.map((cert) => ({
+    ...shown.map((cert) => ({
       kind: "text" as const,
       text: cert.expires
         ? `${cert.name}    earned ${cert.earned}, expires ${cert.expires}`
@@ -266,7 +270,7 @@ const boot: Entry[] = [
   {
     id: "boot-certs",
     command: "cat certifications.txt",
-    lines: certLines(),
+    lines: certLines(false),
   },
   {
     id: "boot-ls",
