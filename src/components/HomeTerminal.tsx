@@ -339,9 +339,9 @@ export default function HomeTerminal() {
 
   useEffect(() => {
     const node = logRef.current;
-    if (!node) return;
+    if (!node || history.length === 0) return;
     node.scrollTop = node.scrollHeight;
-  }, [history, cleared, settled]);
+  }, [history]);
 
   function run(raw: string) {
     const result = respond(raw);
@@ -423,6 +423,11 @@ export default function HomeTerminal() {
                 Terminal command
               </label>
               <Prompt />
+              <span
+                className="term-caret"
+                data-hidden={value.length > 0 ? "true" : "false"}
+                aria-hidden="true"
+              />
               <input
                 ref={inputRef}
                 id={inputId}
@@ -434,11 +439,6 @@ export default function HomeTerminal() {
                 autoComplete="off"
                 placeholder="type a command"
                 aria-describedby="term-hint"
-              />
-              <span
-                className="term-caret"
-                data-hidden={value.length > 0 ? "true" : "false"}
-                aria-hidden="true"
               />
             </form>
 

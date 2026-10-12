@@ -1236,6 +1236,7 @@
 
 .term-hero {
   padding-block: 28px 12px;
+  overflow: clip;
 }
 
 .term-stage {
@@ -1249,7 +1250,7 @@
   z-index: -1;
   left: 50%;
   top: 42%;
-  width: min(920px, 120%);
+  width: min(880px, 100%);
   height: 520px;
   transform: translate(-50%, -50%);
   background: radial-gradient(ellipse at center, rgba(158, 231, 181, 0.16), transparent 68%);
@@ -1261,6 +1262,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  max-height: calc(100svh - var(--nav-h) - 40px);
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.045), transparent 90px),
     rgba(12, 14, 12, 0.92);
@@ -1345,7 +1347,12 @@
 
 .term-log {
   container-type: inline-size;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
   padding: 22px 22px 8px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(158, 231, 181, 0.35) transparent;
 }
 
 .term-block + .term-block {
@@ -1410,8 +1417,8 @@
 
 .term-banner {
   margin: 0;
-  font: 500 12px/1.08 var(--font-mono), ui-monospace, monospace;
-  font-size: min(13px, calc(100cqi / 28));
+  font: 500 13px/1.05 var(--font-mono), ui-monospace, monospace;
+  font-size: clamp(12px, calc(100cqi / 22), 24px);
   letter-spacing: 0;
   white-space: pre;
   color: var(--text-1);
@@ -1514,7 +1521,7 @@
 }
 
 .term-chips button {
-  min-height: 40px;
+  min-height: 44px;
   padding: 0 12px;
   border: 1px solid var(--line);
   border-radius: 9px;
