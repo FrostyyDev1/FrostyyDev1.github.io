@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Jacob Wiseman — IT portfolio
 
-## Getting Started
+Static portfolio for IT support, desktop support, help desk, and networking roles. Built with Next.js and exported for GitHub Pages.
 
-First, run the development server:
+Live site: https://frostyydev1.github.io/
+
+## Stack
+
+- Next.js (App Router) with `output: "export"` and trailing slashes
+- React 19
+- Tailwind CSS 4, with the type and color system in `src/app/globals.css`
+- Instrument Sans, Instrument Serif, and Geist Mono
+
+## Develop
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run lint
+npm run build
+```
 
-## Learn More
+The static site is written to `out/`. GitHub Actions (`.github/workflows/deploy-pages.yml`) builds on pushes to `main` and deploys that folder. This repository does not deploy from a pull request.
 
-To learn more about Next.js, take a look at the following resources:
+Set `NEXT_PUBLIC_SITE_URL` when the canonical host is not `https://frostyydev1.github.io`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Before this is shown to recruiters
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Email.** Search for `TODO: add email` and `mailto:TODO` in `src/content/site.ts`. Replace both with a real address. Do not add a phone number unless Jacob asks for one.
+- **Portrait.** The site uses a JW monogram. When a real photo exists, render it from `public/jacob-photo.jpg` in `src/components/Portrait.tsx`.
+- **Credential links.** CompTIA and ITIL wordmarks live in `public/certs/`. Add Credly or PeopleCert share URLs only when Jacob has them. Do not invent credential IDs.
+- **Résumé.** The linked file is `public/resume-public.pdf` (same bytes as `public/resume.pdf`). It still lists an older company name and does not yet list ITIL 4 Foundation. Update that PDF so it matches NorthStar IT Services LLC and the certifications on the site.
 
-## Deploy on Vercel
+## Pages
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Home, About, Experience, Certifications, Contact, Projects, HomeLab, NorthStar IT, and Custom PCs.
