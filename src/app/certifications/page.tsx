@@ -25,20 +25,7 @@ export default function CertificationsPage() {
 
       <section className="section" style={{ borderTop: 0, paddingTop: 0 }}>
         <div className="container">
-          <div className="panel-ivory">
-            <p className="t-label">On file</p>
-            <h2 className="t-h2" style={{ marginTop: 16, maxWidth: "14em" }}>
-              A+, Network+, and <span className="accent">ITIL 4</span>
-            </h2>
-            <p className="t-body" style={{ marginTop: 18, color: "#3f3c36" }}>
-              A+ was earned in October 2025 and expires in October 2028.
-              Network+ was earned in October 2025. ITIL 4 Foundation was earned
-              in August 2025.
-            </p>
-          </div>
-          <div style={{ marginTop: 28 }}>
-            <CertGrid />
-          </div>
+          <CertGrid />
           <p className="t-small note">
             ITIL is a registered trademark of the PeopleCert group. Used under
             licence from PeopleCert. All rights reserved.

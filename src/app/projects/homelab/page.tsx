@@ -98,7 +98,7 @@ export default function HomelabPage() {
             <p className="overlay-note">
               Tailscale reaches that same Raspberry Pi from outside the LAN.
             </p>
-            <p className="t-small" style={{ marginTop: 16, color: "#5b574f" }}>
+            <p className="t-small" style={{ marginTop: 16 }}>
               A map of the lab, not a live status board. Memory size, storage,
               and uptime percentages are not listed because I am not publishing
               numbers I have not measured for this page.

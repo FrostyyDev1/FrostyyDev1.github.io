@@ -19,9 +19,10 @@ type LinkItem = {
 };
 
 type Line =
-  | { kind: "text"; text: string }
-  | { kind: "heading"; text: string }
-  | { kind: "links"; items: LinkItem[] };
+  | { kind: "text"; text: string; tone?: "dim" | "error" }
+  | { kind: "banner"; heading?: boolean }
+  | { kind: "links"; items: LinkItem[] }
+  | { kind: "pair"; label: string; value: string; tone?: "cmd" };
 
 type Entry = {
   id: string;
@@ -40,6 +41,15 @@ const chips = [
   "clear",
 ] as const;
 
+const NAME_BANNER = [
+  "      _         _____ ____  ____",
+  "     | |  /\\   / ____/ __ \\|  _ \\",
+  "     | | /  \\ | |   | |  | | |_) |",
+  " _   | |/ /\\ \\| |   | |  | |  _ <",
+  "| |__| / ____ \\ |___| |__| | |_) |",
+  " \\____/_/    \\_\\_____\\____/|____/",
+].join("\n");
+
 function Prompt() {
   return (
     <span className="term-prompt" aria-hidden="true">
@@ -52,8 +62,15 @@ function Prompt() {
 }
 
 function LineView({ line }: { line: Line }) {
-  if (line.kind === "heading") {
-    return <h1 className="term-h1">{line.text}</h1>;
+  if (line.kind === "banner") {
+    return (
+      <div className="term-banner-wrap">
+        <pre className="term-banner" aria-hidden="true">
+          {NAME_BANNER}
+        </pre>
+        {line.heading ? <h1 className="sr-only">{person.name}</h1> : null}
+      </div>
+    );
   }
 
   if (line.kind === "links") {
@@ -84,7 +101,26 @@ function LineView({ line }: { line: Line }) {
     );
   }
 
-  return <p>{line.text}</p>;
+  if (line.kind === "pair") {
+    return (
+      <p className="term-pair">
+        <span className={line.tone === "cmd" ? "k is-cmd" : "k"}>
+          {line.label}
+        </span>
+        <span className="v">{line.value}</span>
+      </p>
+    );
+  }
+
+  return (
+    <p
+      className={
+        line.tone === "error" ? "is-error" : line.tone === "dim" ? "is-dim" : undefined
+      }
+    >
+      {line.text}
+    </p>
+  );
 }
 
 function Block({ entry }: { entry: Entry }) {
@@ -92,7 +128,7 @@ function Block({ entry }: { entry: Entry }) {
     <div className="term-block">
       <p className="term-cmd">
         <Prompt />
-        <span>{entry.command}</span>
+        <span className="term-typed">{entry.command}</span>
       </p>
       <div className="term-out">
         {entry.lines.map((line, index) => (
@@ -110,10 +146,11 @@ function certLines(includeItil = true): Line[] {
 
   return [
     ...shown.map((cert) => ({
-      kind: "text" as const,
-      text: cert.expires
-        ? `${cert.name}    earned ${cert.earned}, expires ${cert.expires}`
-        : `${cert.name}    earned ${cert.earned}`,
+      kind: "pair" as const,
+      label: cert.name,
+      value: cert.expires
+        ? `earned ${cert.earned}    expires ${cert.expires}`
+        : `earned ${cert.earned}`,
     })),
     {
       kind: "links",
@@ -137,7 +174,7 @@ function projectLines(): Line[] {
 function contactLines(): Line[] {
   return [
     { kind: "text", text: person.location },
-    { kind: "text", text: person.availability },
+    { kind: "text", text: person.availability, tone: "dim" },
     {
       kind: "links",
       items: [
@@ -165,26 +202,27 @@ function respond(raw: string): Entry | "clear" | null {
 
   if (key === "help" || key === "?") {
     return entry([
-      { kind: "text", text: "help          show this list" },
-      { kind: "text", text: "whoami        name and role" },
-      { kind: "text", text: "about         short bio" },
-      { kind: "text", text: "experience    where I have worked" },
-      { kind: "text", text: "projects      homelab, NorthStar, custom PCs" },
-      { kind: "text", text: "certs         A+, Network+, ITIL 4" },
-      { kind: "text", text: "resume        open the PDF" },
-      { kind: "text", text: "contact       email, LinkedIn, location" },
-      { kind: "text", text: "clear         clear the screen" },
+      { kind: "pair", label: "help", value: "show this list", tone: "cmd" },
+      { kind: "pair", label: "whoami", value: "name and role", tone: "cmd" },
+      { kind: "pair", label: "about", value: "short bio", tone: "cmd" },
+      { kind: "pair", label: "experience", value: "where I have worked", tone: "cmd" },
+      { kind: "pair", label: "projects", value: "homelab, NorthStar, custom PCs", tone: "cmd" },
+      { kind: "pair", label: "certs", value: "A+, Network+, ITIL 4", tone: "cmd" },
+      { kind: "pair", label: "resume", value: "open the PDF", tone: "cmd" },
+      { kind: "pair", label: "contact", value: "email, LinkedIn, location", tone: "cmd" },
+      { kind: "pair", label: "clear", value: "clear the screen", tone: "cmd" },
     ]);
   }
 
   if (key === "whoami") {
     return entry([
+      { kind: "banner" },
       { kind: "text", text: person.name },
       {
         kind: "text",
         text: "IT support, desktop support, and networking.",
       },
-      { kind: "text", text: person.location },
+      { kind: "text", text: person.location, tone: "dim" },
     ]);
   }
 
@@ -205,8 +243,9 @@ function respond(raw: string): Entry | "clear" | null {
   if (key === "experience") {
     return entry([
       ...roles.slice(0, 3).map((role) => ({
-        kind: "text" as const,
-        text: `${role.period}    ${role.role}, ${role.company}`,
+        kind: "pair" as const,
+        label: role.period,
+        value: `${role.role}, ${role.company}`,
       })),
       {
         kind: "links",
@@ -249,8 +288,8 @@ function respond(raw: string): Entry | "clear" | null {
   if (key === "clear") return "clear";
 
   return entry([
-    { kind: "text", text: `command not found: ${command}` },
-    { kind: "text", text: "Type help for the list." },
+    { kind: "text", text: `command not found: ${command}`, tone: "error" },
+    { kind: "text", text: "Type help for the list.", tone: "dim" },
   ]);
 }
 
@@ -259,12 +298,12 @@ const boot: Entry[] = [
     id: "boot-whoami",
     command: "whoami",
     lines: [
-      { kind: "heading", text: person.name },
+      { kind: "banner", heading: true },
       {
         kind: "text",
         text: "IT support, desktop support, and networking.",
       },
-      { kind: "text", text: `${person.location}. ${person.seeking}.` },
+      { kind: "text", text: `${person.location}. ${person.seeking}.`, tone: "dim" },
     ],
   },
   {
@@ -329,82 +368,96 @@ export default function HomeTerminal() {
   return (
     <section className="term-hero" aria-labelledby="term-title">
       <div className="container">
-        <div className={`term ${settled ? "is-settled" : ""}`}>
-          <div className="term-bar">
-            <p id="term-title" className="term-title">
-              jacob@northstar: ~
-            </p>
-            {settled ? null : (
-              <button
-                type="button"
-                className="term-skip"
-                onClick={() => setSettled(true)}
-              >
-                Skip
-              </button>
-            )}
-          </div>
-
-          <div
-            ref={logRef}
-            className="term-log"
-            role="log"
-            aria-live="polite"
-            aria-relevant="additions"
-          >
-            {cleared ? <h1 className="sr-only">{person.name}</h1> : null}
-            {cleared ? null : (
-              <div className="term-boot">
-                {boot.map((entry) => (
-                  <Block key={entry.id} entry={entry} />
-                ))}
+        <div className="term-stage">
+          <div className={`term ${settled ? "is-settled" : ""}`}>
+            <div className="term-bar">
+              <div className="term-dots" aria-hidden="true">
+                <span />
+                <span />
+                <span />
               </div>
-            )}
-            {history.map((entry) => (
-              <Block key={entry.id} entry={entry} />
-            ))}
-          </div>
+              <p id="term-title" className="term-title">
+                jacob@northstar: ~
+              </p>
+              <div className="term-bar-slot">
+                {settled ? null : (
+                  <button
+                    type="button"
+                    className="term-skip"
+                    onClick={() => setSettled(true)}
+                  >
+                    Skip
+                  </button>
+                )}
+              </div>
+            </div>
 
-          <form
-            className="term-form"
-            onSubmit={(event) => {
-              event.preventDefault();
-              submit(value);
-            }}
-          >
-            <label className="sr-only" htmlFor={inputId}>
-              Terminal command
-            </label>
-            <Prompt />
-            <input
-              ref={inputRef}
-              id={inputId}
-              value={value}
-              onChange={(event) => setValue(event.target.value)}
-              autoCapitalize="off"
-              autoCorrect="off"
-              spellCheck={false}
-              autoComplete="off"
-              placeholder="type help"
-              aria-describedby="term-hint"
-            />
-          </form>
+            <div
+              ref={logRef}
+              className="term-log"
+              role="log"
+              aria-live="polite"
+              aria-relevant="additions"
+            >
+              {cleared ? <h1 className="sr-only">{person.name}</h1> : null}
+              {cleared ? null : (
+                <div className="term-boot">
+                  {boot.map((entry) => (
+                    <Block key={entry.id} entry={entry} />
+                  ))}
+                </div>
+              )}
+              {history.map((entry) => (
+                <Block key={entry.id} entry={entry} />
+              ))}
+            </div>
 
-          <div className="term-chips" role="group" aria-label="Commands">
-            {chips.map((command) => (
-              <button
-                key={command}
-                type="button"
-                onClick={() => submit(command)}
-              >
-                {command}
-              </button>
-            ))}
+            <form
+              className="term-form"
+              onSubmit={(event) => {
+                event.preventDefault();
+                submit(value);
+              }}
+            >
+              <label className="sr-only" htmlFor={inputId}>
+                Terminal command
+              </label>
+              <Prompt />
+              <input
+                ref={inputRef}
+                id={inputId}
+                value={value}
+                onChange={(event) => setValue(event.target.value)}
+                autoCapitalize="off"
+                autoCorrect="off"
+                spellCheck={false}
+                autoComplete="off"
+                placeholder="type a command"
+                aria-describedby="term-hint"
+              />
+              <span
+                className="term-caret"
+                data-hidden={value.length > 0 ? "true" : "false"}
+                aria-hidden="true"
+              />
+            </form>
+
+            <div className="term-chips" role="group" aria-label="Commands">
+              {chips.map((command) => (
+                <button
+                  key={command}
+                  type="button"
+                  onClick={() => submit(command)}
+                >
+                  {command}
+                </button>
+              ))}
+            </div>
+            <p id="term-hint" className="sr-only">
+              Type a command and press Enter, or use the command buttons. help,
+              about, experience, projects, certs, resume, contact, and clear.
+            </p>
           </div>
-          <p id="term-hint" className="sr-only">
-            Type a command and press Enter, or use the command buttons. help,
-            about, experience, projects, certs, resume, contact, and clear.
-          </p>
         </div>
       </div>
     </section>

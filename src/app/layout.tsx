@@ -1,5 +1,5 @@
 ﻿import type { Metadata } from "next";
-import { Geist_Mono, Instrument_Sans, Instrument_Serif } from "next/font/google";
+import { Instrument_Sans, Instrument_Serif, JetBrains_Mono } from "next/font/google";
 
 import SiteFooter from "@/components/SiteFooter";
 import SiteNav from "@/components/SiteNav";
@@ -21,7 +21,7 @@ const serif = Instrument_Serif({
   display: "swap",
 });
 
-const mono = Geist_Mono({
+const mono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
   display: "swap",
