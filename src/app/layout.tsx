@@ -1,5 +1,5 @@
 ﻿import type { Metadata, Viewport } from "next";
-import { IBM_Plex_Mono, Outfit, Syne } from "next/font/google";
+import { Bricolage_Grotesque, IBM_Plex_Mono, Instrument_Serif } from "next/font/google";
 
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -7,18 +7,19 @@ import { person, siteUrl } from "@/content/site";
 
 import "./globals.css";
 
-const display = Syne({
+const display = Instrument_Serif({
   subsets: ["latin"],
   variable: "--font-display",
   display: "swap",
-  weight: ["500", "600", "700", "800"],
+  weight: "400",
+  style: ["normal", "italic"],
 });
 
-const sans = Outfit({
+const sans = Bricolage_Grotesque({
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
-  weight: ["400", "500", "600"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 const mono = IBM_Plex_Mono({
@@ -71,7 +72,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#141210",
+  themeColor: "#0d0d0f",
   colorScheme: "dark",
 };
 

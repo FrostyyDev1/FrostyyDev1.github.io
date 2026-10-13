@@ -1,140 +1,257 @@
 ﻿import Link from "next/link";
-import Image from "next/image";
 
 import { Marquee } from "@/components/Marquee";
-import { Shell } from "@/components/Shell";
+import { ShellBay } from "@/components/ShellBay";
+import { WorkRail } from "@/components/WorkRail";
 import {
   contactEmail,
   contactEmailHref,
   education,
-  featuredCerts,
   person,
+  prompt,
   roles,
 } from "@/content/site";
+
+const records = [
+  {
+    when: "October 2025",
+    title: "CompTIA A+ earned",
+    href: "/certifications",
+    note: "Expires October 2028",
+  },
+  {
+    when: "October 2025",
+    title: "CompTIA Network+ earned",
+    href: "/certifications",
+    note: "Expires October 2028",
+  },
+  {
+    when: "September 2027",
+    title: "B.S. Information Technology expected",
+    href: "/about",
+    note: education.school,
+  },
+];
 
 export default function HomePage() {
   return (
     <main id="main">
-      <section className="hero wrap">
-        <div className="hero-grid">
-          <div className="rise hero-title">
-            <p className="eyebrow">Elkview / Charleston, WV</p>
-            <h1>
-              Jacob <span className="hero-surname">Wiseman</span>
-            </h1>
+      <section className="hero" data-section="hero">
+        <div className="frame hero-top">
+          <h1 className="rise">
+            Jacob <span className="hero-surname">Wiseman</span>, IT support
+            engineer: Desktops, systems, and networks that stay up.
+          </h1>
+          <div className="hero-side">
+            <article className="hero-card rise" style={{ animationDelay: "80ms" }}>
+              <p className="kicker">
+                <span className="status-dot" aria-hidden="true" />
+                Open to
+              </p>
+              <ul className="seek-mini">
+                {person.seeking.map((role) => (
+                  <li key={role}>{role}</li>
+                ))}
+              </ul>
+            </article>
+            <article className="hero-card hero-profile rise" style={{ animationDelay: "140ms" }}>
+              <div className="monogram" aria-hidden="true">
+                JW
+              </div>
+              <div>
+                <p className="profile-name">
+                  Jacob <span className="hero-surname">Wiseman</span>
+                </p>
+                <p className="profile-meta">{person.location}</p>
+                <p className="profile-prompt">{prompt}</p>
+              </div>
+            </article>
           </div>
-          <div className="hero-aside rise" style={{ animationDelay: "80ms" }}>
-            <p className="status">
-              <span className="status-dot" aria-hidden="true" />
-              Open to IT support roles
-            </p>
-            <p>
-              Desktop support, systems, and networking — from {person.locationLong}.
-            </p>
+        </div>
+        <div className="frame hero-stats">
+          <article>
+            <p>Now</p>
+            <strong>Open to IT support</strong>
+          </article>
+          <article>
+            <p>Based</p>
+            <strong>Elkview, WV</strong>
+          </article>
+          <article>
+            <p>Studying</p>
+            <strong>{education.school}</strong>
+          </article>
+          <article>
+            <p>Reach out</p>
+            <a href={contactEmailHref}>
+              <strong>Email</strong>
+            </a>
+          </article>
+        </div>
+      </section>
+
+      <section className="band" data-section="method" aria-labelledby="method-heading">
+        <div className="frame method-layout">
+          <article className="method-track">
+            <p className="kicker">The pass</p>
+            <ol>
+              <li>
+                <span>01</span>
+                <div>
+                  <strong>Listen</strong>
+                  <p>Start from the desk, the device, or the network that stopped.</p>
+                </div>
+              </li>
+              <li>
+                <span>02</span>
+                <div>
+                  <strong>Trace</strong>
+                  <p>Hardware, Windows, TCP/IP, or Wi-Fi — follow the actual path.</p>
+                </div>
+              </li>
+              <li>
+                <span>03</span>
+                <div>
+                  <strong>Restore</strong>
+                  <p>Leave the system working, and say what changed.</p>
+                </div>
+              </li>
+            </ol>
+          </article>
+          <div className="method-side">
+            <h2 id="method-heading">How I work</h2>
+            <div className="method-cards">
+              <article>
+                <p className="kicker">Hands on</p>
+                <h3>Desks, devices, and the network between them.</h3>
+              </article>
+              <article>
+                <p className="kicker">Local</p>
+                <h3>{person.locationLong}.</h3>
+              </article>
+              <article>
+                <p className="kicker">Already in motion</p>
+                <h3>Owner at {roles[0].org}. Registration in Epic.</h3>
+              </article>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="wrap bento" aria-label="Overview">
-        <article className="card slot-intro rise">
-          <p className="eyebrow">Looking for</p>
-          <h2>A desk, a device, and a network that has to keep working.</h2>
-          <p>
-            I want the next role to be hands-on: IT Support Engineer, IT
-            technician, desktop support, or systems and networking. I live in
-            Elkview, in the Charleston, West Virginia area.
-          </p>
-        </article>
-
-        <article className="card card-shell slot-shell rise" style={{ animationDelay: "70ms" }}>
-          <div className="shell-top">
-            <span className="status-dot" aria-hidden="true" />
-            <p>NorthStar shell</p>
-            <p className="shell-hint">Tab completes</p>
+      <section className="band" data-section="work" aria-labelledby="work-heading">
+        <div className="frame">
+          <div className="section-head">
+            <p className="kicker">Roles and credentials</p>
+            <h2 id="work-heading" className="section-title">
+              Selected work
+            </h2>
           </div>
-          <Shell />
-        </article>
-
-        <article className="card slot-seek rise" style={{ animationDelay: "120ms" }}>
-          <p className="eyebrow">Roles</p>
-          <ol className="role-list">
-            {person.seeking.map((role, index) => (
-              <li key={role}>
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                {role}
-              </li>
-            ))}
-          </ol>
-        </article>
-
-        <Link href="/experience#northstar" className="card slot-north rise" style={{ animationDelay: "40ms" }}>
-          <p className="eyebrow">Owner</p>
-          <h2>{roles[0].org}</h2>
-          <p>{roles[0].summary}</p>
-          <span className="card-go">Experience</span>
-        </Link>
-
-        <Link href="/experience#wvu" className="card slot-wvu rise" style={{ animationDelay: "90ms" }}>
-          <p className="eyebrow">Registration Specialist</p>
-          <h2>Thomas Imaging Center</h2>
-          <p>{roles[1].summary}</p>
-          <span className="card-go">Experience</span>
-        </Link>
-
-        <Link href="/about" className="card slot-edu rise" style={{ animationDelay: "130ms" }}>
-          <p className="eyebrow">Expected {education.expected}</p>
-          <h2>{education.degree}</h2>
-          <p>{education.school}</p>
-          <span className="card-go">About</span>
-        </Link>
-
-        {featuredCerts.map((cert) => (
-          <Link key={cert.id} href="/certifications" className={`card slot-${cert.id} cert-mini rise`}>
-            <Image
-              src={cert.image}
-              alt=""
-              width={cert.width}
-              height={cert.height}
-            />
-            <div>
-              <h2>{cert.name}</h2>
-              <p>
-                Earned {cert.earned}
-                <br />
-                Expires {cert.expires}
-              </p>
-            </div>
-          </Link>
-        ))}
-
-        <Link href="/contact" className="card slot-mail rise">
-          <p className="eyebrow">Contact</p>
-          <h2>Email is the direct line.</h2>
-          <p>{contactEmail}</p>
-          <span className="card-go">Write</span>
-        </Link>
+          <WorkRail />
+        </div>
       </section>
 
-      <Marquee />
-
-      <section className="contact-band" id="contact" aria-labelledby="home-contact">
-        <div className="wrap">
-          <p className="eyebrow">Contact</p>
-          <h2 id="home-contact">Say hello.</h2>
-          <a className="email-link" href={contactEmailHref}>
-            {contactEmail}
-          </a>
-          <div className="contact-row">
-            <a href={person.linkedin} target="_blank" rel="noopener noreferrer">
-              LinkedIn
-              <span className="sr-only"> (opens in a new tab)</span>
-            </a>
-            <a href={person.businessUrl} target="_blank" rel="noopener noreferrer">
-              {person.business}
-              <span className="sr-only"> (opens in a new tab)</span>
-            </a>
-            <Link href="/contact">Contact page</Link>
+      <section className="band" data-section="about" aria-labelledby="about-heading">
+        <div className="frame about-home">
+          <div>
+            <p className="kicker">Know about me</p>
+            <h2 id="about-heading" className="section-title">
+              IT support, and a little of everything on the desk
+            </h2>
+            <p className="about-copy">
+              {person.name} lives in {person.locationLong}. He is looking for an{" "}
+              {person.seeking[0]}, {person.seeking[1].toLowerCase()},{" "}
+              {person.seeking[2].toLowerCase()}, or {person.seeking[3]} role.
+              He owns {roles[0].org}, and he is a {roles[1].title} at{" "}
+              {roles[1].org}.
+            </p>
+            <Link className="text-link" href="/about">
+              About
+            </Link>
           </div>
+          <div className="about-cards">
+            <article>
+              <p className="kicker">Open to</p>
+              <h3>{person.seeking[0]}</h3>
+              <p>{person.seeking.slice(1).join(" · ")}</p>
+            </article>
+            <article>
+              <p className="kicker">Based</p>
+              <h3>{person.location}</h3>
+              <p>Charleston, West Virginia area.</p>
+            </article>
+            <article>
+              <p className="kicker">Degree</p>
+              <h3>{education.degree}</h3>
+              <p>
+                {education.school}. Expected {education.expected}.
+              </p>
+            </article>
+            <article>
+              <p className="kicker">Business</p>
+              <h3>{person.business}</h3>
+              <p>Owned by Jacob. Based in Elkview.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section className="band" data-section="record" aria-labelledby="record-heading">
+        <div className="frame">
+          <div className="section-head record-head">
+            <div>
+              <p className="kicker">On file</p>
+              <h2 id="record-heading" className="section-title">
+                The record
+              </h2>
+            </div>
+            <Link className="text-link" href="/certifications">
+              See certifications
+            </Link>
+          </div>
+          <div className="record-list">
+            {records.map((record) => (
+              <Link key={record.title} href={record.href} className="record">
+                <time>{record.when}</time>
+                <span>
+                  <strong>{record.title}</strong>
+                  <small>{record.note}</small>
+                </span>
+                <span className="go" aria-hidden="true">
+                  →
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="band" data-section="explore" aria-labelledby="explore-heading">
+        <div className="frame explore-layout">
+          <div>
+            <p className="kicker">The shell</p>
+            <h2 id="explore-heading" className="section-title">
+              Open the shell and say hello
+            </h2>
+            <p className="about-copy">
+              The prompt is {prompt}. Try coffee, fortune, or neofetch. Ctrl K
+              opens the same shell from anywhere.
+            </p>
+          </div>
+          <ShellBay />
+        </div>
+      </section>
+
+      <section className="closer" data-section="cta" aria-labelledby="cta-heading">
+        <Marquee />
+        <div className="frame closer-copy">
+          <h2 id="cta-heading">
+            <span>Open to desktop support</span>
+            <span>Email is the direct line</span>
+          </h2>
+          <a className="pill" href={contactEmailHref}>
+            Email Jacob
+          </a>
+          <p className="closer-mail">{contactEmail}</p>
         </div>
       </section>
     </main>

@@ -1,11 +1,17 @@
-import { domains } from "@/content/site";
+const phrases = [
+  "Open to IT support",
+  "IT technician",
+  "Desktop support",
+  "Systems and networking",
+  "Elkview, West Virginia",
+];
 
-function Items({ clone = false }: { clone?: boolean }) {
-  return domains.map((domain) => (
-    <li key={clone ? `${domain}-clone` : domain} className={clone ? "marquee-clone" : undefined} aria-hidden={clone || undefined}>
-      <span>{domain}</span>
+function Row({ clone = false }: { clone?: boolean }) {
+  return phrases.map((phrase) => (
+    <li key={clone ? `${phrase}-clone` : phrase} className={clone ? "marquee-clone" : undefined} aria-hidden={clone || undefined}>
+      <span>{phrase}</span>
       <span className="diamond" aria-hidden="true">
-        ✦
+        ·
       </span>
     </li>
   ));
@@ -13,22 +19,24 @@ function Items({ clone = false }: { clone?: boolean }) {
 
 export function Marquee() {
   return (
-    <section className="marquee-section" aria-labelledby="domains-heading">
+    <div className="marquee-section">
       <input id="pause-marquee" className="pause-toggle" type="checkbox" />
-      <div className="wrap marquee-head">
-        <h2 id="domains-heading">Domains</h2>
+      <div className="marquee-head">
+        <p id="domains-heading" className="sr-only">
+          Open to
+        </p>
         <label htmlFor="pause-marquee" className="pause-label">
           <span className="when-play">Pause</span>
           <span className="when-paused">Play</span>
-          <span className="sr-only"> the scrolling domains</span>
+          <span className="sr-only"> the scrolling line</span>
         </label>
       </div>
       <div className="marquee">
         <ul className="marquee-track">
-          <Items />
-          <Items clone />
+          <Row />
+          <Row clone />
         </ul>
       </div>
-    </section>
+    </div>
   );
 }

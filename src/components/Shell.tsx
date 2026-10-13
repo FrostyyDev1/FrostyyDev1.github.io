@@ -98,9 +98,11 @@ function Blocks({
 export function Shell({
   welcome = true,
   autoFocus = false,
+  listen = false,
 }: {
   welcome?: boolean;
   autoFocus?: boolean;
+  listen?: boolean;
 }) {
   const inputId = useId();
   const inputRef = useRef<HTMLInputElement>(null);
@@ -134,9 +136,23 @@ export function Shell({
       : [],
   );
 
+  const submitRef = useRef<(command: string) => void>(() => {});
+
   useEffect(() => {
     if (autoFocus) inputRef.current?.focus();
   }, [autoFocus]);
+
+  useEffect(() => {
+    if (!listen) return;
+    const onRun = (event: Event) => {
+      const detail = (event as CustomEvent<string>).detail;
+      if (typeof detail !== "string") return;
+      submitRef.current(detail);
+      inputRef.current?.focus({ preventScroll: true });
+    };
+    window.addEventListener("northstar-run", onRun);
+    return () => window.removeEventListener("northstar-run", onRun);
+  }, [listen]);
 
   useEffect(() => {
     const node = logRef.current;
@@ -164,6 +180,10 @@ export function Shell({
       { id, input: trimmed, blocks: result.blocks },
     ]);
   }
+
+  useEffect(() => {
+    submitRef.current = submit;
+  });
 
   function onKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
     if (event.key === "Tab") {

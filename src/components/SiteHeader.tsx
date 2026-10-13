@@ -5,7 +5,9 @@ import { usePathname } from "next/navigation";
 import { useRef } from "react";
 
 import { CommandMenu } from "@/components/CommandMenu";
-import { nav } from "@/content/site";
+import { contactEmailHref, nav } from "@/content/site";
+
+const links = [{ href: "/", label: "Home" }, ...nav];
 
 function Star() {
   return (
@@ -34,20 +36,6 @@ export function SiteHeader() {
     if (menuRef.current) menuRef.current.open = false;
   }
 
-  function links() {
-    return nav.map((item) => (
-      <li key={item.href}>
-        <Link
-          href={item.href}
-          aria-current={isCurrent(item.href) ? "page" : undefined}
-          onClick={closeMenu}
-        >
-          {item.label}
-        </Link>
-      </li>
-    ));
-  }
-
   return (
     <header className="site-header">
       <a className="skip" href="#main">
@@ -56,17 +44,46 @@ export function SiteHeader() {
       <div className="header-bar">
         <Link href="/" className="brand" onClick={closeMenu}>
           <Star />
-          <span className="brand-name">Jacob Wiseman</span>
+          <span className="brand-name">jacob</span>
         </Link>
         <nav className="nav-desktop" aria-label="Primary">
-          <ul>{links()}</ul>
+          <ul>
+            {links.map((item) => (
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  aria-current={isCurrent(item.href) ? "page" : undefined}
+                >
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </nav>
         <div className="header-actions">
           <CommandMenu />
+          <a className="nav-cta" href={contactEmailHref}>
+            Email
+          </a>
           <details ref={menuRef} className="nav-mobile">
-            <summary>Menu</summary>
+            <summary>
+              <span className="sr-only">Menu</span>
+              <span className="burger" aria-hidden="true" />
+            </summary>
             <nav aria-label="Mobile">
-              <ul>{links()}</ul>
+              <ul>
+                {links.map((item) => (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      aria-current={isCurrent(item.href) ? "page" : undefined}
+                      onClick={closeMenu}
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </nav>
           </details>
         </div>
