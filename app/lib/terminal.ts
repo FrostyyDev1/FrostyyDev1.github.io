@@ -165,7 +165,7 @@ function contact(): TermResult {
     blocks: [
       {
         kind: 'text',
-        text: 'Email me. I do not publish a phone number.',
+        text: 'Email me. No phone number on this site.',
       },
       {
         kind: 'kv',

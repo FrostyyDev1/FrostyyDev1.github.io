@@ -24,7 +24,7 @@
     "greeting": "jacob{'@'}northstar:~$",
     "hint": "The shell on the page takes coffee and neofetch.",
     "cta": "Email me at jacob.wiseman345{'@'}gmail.com",
-    "stack": "Built on Emeric Guyon's MIT template. I changed the words and the colors."
+    "stack": "Template by Emeric Guyon, MIT License."
   },
   "hero": {
     "name": "JACOB WISEMAN",
@@ -35,9 +35,9 @@
   },
   "about": {
     "title": "I'm Jacob, an IT tech out of Elkview, WV.",
-    "p1": "Charleston is the bigger dot on the map. I work in that area.",
+    "p1": "I work in the Charleston, West Virginia area.",
     "p2": "I like the moment someone who was stuck gets moving again. That's the part I stay for.",
-    "p3": "Jobs, badges, and the email address each get their own stop. I won't make you read them three times.",
+    "p3": "Happy to talk through a desk, a network, or a role.",
     "label": "About",
     "experienceLabel": "Where my days go",
     "exp1": {
@@ -61,12 +61,12 @@
   },
   "services": {
     "label": "How I work",
-    "title": "I start with the sentence you actually said.",
-    "subtitle": "Then I follow the path. Then I tell you what changed. That's the whole method.",
+    "title": "I start with what you told me.",
+    "subtitle": "Then I follow the path, and I tell you what changed.",
     "regie": {
       "tag": "01 · The seats I want",
       "title": "Hire me for one of these",
-      "subtitle": "Four names for the same kind of work. Pick the one your posting uses.",
+      "subtitle": "I'm open to these roles.",
       "availableLabel": "Open to",
       "roles": [
         "IT Support Engineer",
@@ -78,15 +78,15 @@
         "A desk that quit on somebody",
         "A network that only fails at the worst minute",
         "Hardware you can point at",
-        "A note left behind so the next person isn't guessing"
+        "A note the next person can follow"
       ],
       "meta": "Tell me which seat. I can take it from there.",
       "cta": "Email me"
     },
     "forfait": {
       "tag": "02 · The order",
-      "title": "I don't swap parts to feel busy.",
-      "subtitle": "If I can explain it, I don't replace it. If I replace it, I can explain it.",
+      "title": "Listen, then trace, then leave it working.",
+      "subtitle": "I explain the path. If something has to change, I say why.",
       "area": "Elkview / Charleston, WV",
       "offers": {
         "support": {
@@ -97,12 +97,12 @@
         },
         "desktop": {
           "name": "Follow it",
-          "desc": "Hardware, Windows, or the network. Whichever the path actually is.",
+          "desc": "Hardware, Windows, or the network.",
           "price": "Trace",
           "included": "Before I change it"
         }
       },
-      "meta": "No mystery steps. You'll know what I touched.",
+      "meta": "You'll know what I touched.",
       "cta": "Tell me the symptom"
     },
     "domains": {
@@ -111,7 +111,7 @@
     },
     "reassurance": {
       "response": "I write it down",
-      "noCommit": "I don't guess first",
+      "noCommit": "I check first",
       "remote": "I leave a note"
     },
     "process": {
@@ -119,7 +119,7 @@
       "steps": [
         {
           "title": "Listen",
-          "desc": "I write the symptom the way you said it, before I rename it."
+          "desc": "I write the symptom the way you said it."
         },
         {
           "title": "Trace",
@@ -133,13 +133,13 @@
     },
     "finalCta": {
       "title": "Got a seat like that?",
-      "text": "The contact section is the short version. Say which role.",
+      "text": "Tell me the role.",
       "button": "Email me"
     },
     "items": {
       "custom": {
         "title": "Epic",
-        "desc": "The system I register patients in. Not a logo I collected."
+        "desc": "The system I register patients in."
       },
       "redesign": {
         "title": "Desktop support",
@@ -165,7 +165,7 @@
   },
   "skills": {
     "label": "Toolbox",
-    "title": "What I actually put my hands on."
+    "title": "What I put my hands on."
   },
   "shell": {
     "label": "Shell",
@@ -182,7 +182,7 @@
     "viewProject": "Read it",
     "contextLabel": "The setup",
     "approachLabel": "How I hold it",
-    "stackLabel": "What it actually uses",
+    "stackLabel": "What it uses",
     "resultLabel": "Where it stands",
     "previous": "Previous",
     "next": "Next",
@@ -196,35 +196,35 @@
         "seoTitle": "NorthStar IT Services LLC · Jacob Wiseman",
         "description": "IT services, under my own name.",
         "longDescription": "NorthStar IT Services LLC is mine. I run it as an IT services business out of Elkview, working the Charleston area. The public site is northstarwv.com.",
-        "approach": "It's a business, not a case study with a fake before-and-after. If you want the company, use the link. If you want me, use the email.",
-        "takeaway1": "The name is NorthStar IT Services LLC. Not a technology brand I made up.",
+        "approach": "I own it. The public site is northstarwv.com.",
+        "takeaway1": "NorthStar IT Services LLC.",
         "takeaway2": "Home base is Elkview. The work reaches the Charleston area.",
         "takeaway3": "northstarwv.com is the business site.",
-        "stackNote": "I don't hang a tool list on the company. The work is IT services.",
-        "result": "I'm the owner. That's the whole title.",
+        "stackNote": "IT services, based in Elkview.",
+        "result": "I'm the owner.",
         "seoDescription": "I own NorthStar IT Services LLC, an IT services business in Elkview, West Virginia."
       },
       "thomas-imaging": {
         "seoTitle": "Thomas Imaging Center · Jacob Wiseman",
         "description": "The imaging-center work.",
         "longDescription": "I'm a Registration Specialist at WVU Medicine’s Thomas Imaging Center. The patients come in, and I register them. That registration runs in Epic.",
-        "approach": "The job is the front of the visit: get the person checked in, in the system the center actually uses. I don't add other clinical systems to the story.",
+        "approach": "I check patients in. Registration runs in Epic.",
         "takeaway1": "The title is Registration Specialist.",
         "takeaway2": "The place is WVU Medicine Thomas Imaging Center.",
         "takeaway3": "Epic is the system the registration runs in.",
-        "stackNote": "Epic, for patient registration. That's the system I name.",
+        "stackNote": "Epic, for patient registration.",
         "result": "It's the day job next to the business I own.",
         "seoDescription": "I'm a Registration Specialist at WVU Medicine Thomas Imaging Center. Patient registration runs in Epic."
       },
       "comptia-a-plus": {
         "seoTitle": "CompTIA A+ · Jacob Wiseman",
         "description": "The machines-and-operating-systems badge.",
-        "longDescription": "I earned CompTIA A+ in October 2025. It expires in October 2028. The picture is CompTIA’s own organization badge, the one on their Credly page.",
+        "longDescription": "I earned CompTIA A+ in October 2025. It expires in October 2028. The badge is CompTIA’s organization badge on Credly.",
         "approach": "This is the credential I point at when the work is hardware, Windows, and the troubleshooting that happens at a desk.",
         "takeaway1": "Earned October 2025.",
         "takeaway2": "Expires October 2028.",
-        "takeaway3": "The badge links to CompTIA on Credly, not a personal share link.",
-        "stackNote": "Hardware, Windows, troubleshooting. That's the company it keeps.",
+        "takeaway3": "Official CompTIA badge on Credly.",
+        "stackNote": "Hardware, Windows, and troubleshooting.",
         "result": "Current through October 2028.",
         "seoDescription": "I earned CompTIA A+ in October 2025. It expires in October 2028.",
         "stats": {
@@ -235,11 +235,11 @@
       "network-plus": {
         "seoTitle": "CompTIA Network+ · Jacob Wiseman",
         "description": "The one for the path between machines.",
-        "longDescription": "I earned CompTIA Network+ in October 2025. It expires in October 2028. Same official treatment: CompTIA’s organization badge on Credly.",
+        "longDescription": "I earned CompTIA Network+ in October 2025. It expires in October 2028. The badge is CompTIA’s organization badge on Credly.",
         "approach": "When the problem leaves the desk and gets on a network, this is the credential that matches. Infrastructure, operations, troubleshooting.",
         "takeaway1": "Earned October 2025.",
         "takeaway2": "Expires October 2028.",
-        "takeaway3": "The badge is CompTIA’s organization page, not a personal share link.",
+        "takeaway3": "Official CompTIA badge on Credly.",
         "stackNote": "Networking, TCP/IP, and Wi-Fi sit next to this one.",
         "result": "Current through October 2028.",
         "seoDescription": "I earned CompTIA Network+ in October 2025. It expires in October 2028.",
@@ -252,11 +252,11 @@
         "seoTitle": "CSU Global · Jacob Wiseman",
         "description": "The degree, still in progress.",
         "longDescription": "I'm earning a B.S. in Information Technology at CSU Global. The date I'm aiming at is September 2027.",
-        "approach": "It's a degree in progress. I don't have a GPA, a course list, or a graduation speech to put here.",
+        "approach": "B.S. in Information Technology, expected September 2027.",
         "takeaway1": "The school is CSU Global.",
         "takeaway2": "The degree is a B.S. in Information Technology.",
         "takeaway3": "Expected September 2027.",
-        "stackNote": "No extra coursework claimed. The degree name is the whole stack.",
+        "stackNote": "B.S. Information Technology.",
         "result": "Still going. September 2027 is the mark.",
         "seoDescription": "I'm earning a B.S. in Information Technology at CSU Global, expected September 2027.",
         "stats": {
@@ -267,12 +267,12 @@
   },
   "clients": {
     "label": "Places",
-    "title": "The names that are actually mine to use."
+    "title": "Where I show up."
   },
   "contact": {
     "label": "Contact",
     "title": "Write me.",
-    "subtitle": "The form opens your email app with a note addressed to me. I don't publish a phone number.",
+    "subtitle": "The form opens your email app. No phone number on this site.",
     "note": "If you're hiring, name the seat. If you're not, a real question is fine too.",
     "form": {
       "name": "Name",
@@ -316,14 +316,14 @@
   "projectsPage": {
     "label": "Work",
     "title": "The longer versions.",
-    "intro": "Open one. Each record says its own thing, so you don't have to piece it together from the home page.",
+    "intro": "The longer write-ups.",
     "seoTitle": "Work · Jacob Wiseman",
-    "seoDescription": "The work I actually do: NorthStar IT Services LLC, registration at Thomas Imaging, and the degree I'm finishing."
+    "seoDescription": "NorthStar IT Services LLC, registration at Thomas Imaging, and the degree I'm finishing."
   },
   "certsPage": {
     "label": "Certs",
     "title": "What I've passed.",
-    "intro": "Three badges. The art is the official Credly organization badge, not a picture I made.",
+    "intro": "CompTIA A+, CompTIA Network+, and ITIL 4 Foundation. Official Credly badges.",
     "seoTitle": "Certifications · Jacob Wiseman",
     "seoDescription": "CompTIA A+ and Network+, earned October 2025 and expiring October 2028, and ITIL 4 Foundation, earned August 2025.",
     "earned": "Earned",

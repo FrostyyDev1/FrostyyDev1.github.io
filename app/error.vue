@@ -7,7 +7,7 @@ const status = computed(() => props.error?.statusCode ?? 404)
 const notice = computed(() => {
   const path = props.error?.url || ''
   if (status.value === 404) {
-    return `404: ${path || 'that path'} isn't a page I made. Try help, or go home.`
+    return `404: ${path || 'that path'} isn't here. Try help, or go home.`
   }
   return `${status.value}: something broke. Try help, or go home.`
 })
