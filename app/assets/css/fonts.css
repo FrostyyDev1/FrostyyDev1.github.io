@@ -1,0 +1,49 @@
+/* Clash Display — Critical display font */
+@font-face {
+  font-family: 'Clash Display';
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/ClashDisplay-Medium.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Clash Display';
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/ClashDisplay-Semibold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Clash Display';
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/ClashDisplay-Bold.woff2') format('woff2');
+}
+
+/* Satoshi — Body font */
+@font-face {
+  font-family: 'Satoshi';
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/Satoshi-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Satoshi';
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/Satoshi-Medium.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Satoshi';
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/Satoshi-Bold.woff2') format('woff2');
+}

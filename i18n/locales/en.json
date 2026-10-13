@@ -1,0 +1,329 @@
+{
+  "seo": {
+    "title": "Jacob Wiseman, IT support in Elkview, West Virginia",
+    "description": "Jacob Wiseman is an IT support candidate in Elkview, in the Charleston, West Virginia area. Owner of NorthStar IT Services LLC. Registration Specialist at WVU Medicine Thomas Imaging Center. CompTIA A+ and Network+."
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Focus",
+    "skills": "Domains",
+    "projects": "Work",
+    "shell": "Shell",
+    "certs": "Certifications",
+    "contact": "Contact",
+    "cta": "EMAIL JACOB",
+    "toggleMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "switchLang": "Language"
+  },
+  "a11y": {
+    "skipLink": "Skip to content"
+  },
+  "console": {
+    "greeting": "jacob{'@'}northstar:~$",
+    "hint": "The page has a shell. Try help, certs, or coffee.",
+    "cta": "Email jacob.wiseman345{'@'}gmail.com",
+    "stack": "Template by Emeric Guyon, MIT License. Recolored and rewritten for Jacob Wiseman."
+  },
+  "hero": {
+    "name": "JACOB WISEMAN",
+    "baseline": "IT support for desktop, systems, and networking. Based in Elkview, in the Charleston, West Virginia area.",
+    "location": "Elkview / Charleston, West Virginia",
+    "ariaLabel": "Home: Jacob Wiseman, IT support in Elkview, West Virginia",
+    "h1": "Jacob Wiseman, IT support in Elkview, West Virginia"
+  },
+  "about": {
+    "title": "Careful troubleshooting, then a clear explanation.",
+    "p1": "Jacob Wiseman is in Elkview, in the Charleston, West Virginia area, and is looking for IT Support Engineer, IT technician, desktop support, and systems and networking roles.",
+    "p2": "He owns NorthStar IT Services LLC, an IT services business based in Elkview and working in the Charleston area. He is also a Registration Specialist at WVU Medicine’s Thomas Imaging Center, where patient registration runs in Epic.",
+    "p3": "CompTIA A+ and Network+ were earned in October 2025 and expire in October 2028. A B.S. in Information Technology from CSU Global is expected in September 2027.",
+    "label": "About",
+    "experienceLabel": "On the record",
+    "exp1": {
+      "company": "NorthStar IT Services LLC",
+      "role": "Owner",
+      "period": "Elkview, WV",
+      "clients": "IT services in the Charleston area"
+    },
+    "exp2": {
+      "company": "WVU Medicine Thomas Imaging Center",
+      "role": "Registration Specialist",
+      "period": "Epic",
+      "clients": "Patient registration runs in Epic"
+    },
+    "exp3": {
+      "company": "CSU Global",
+      "role": "B.S. Information Technology",
+      "period": "Sept 2027",
+      "clients": "Expected September 2027"
+    }
+  },
+  "services": {
+    "label": "Focus",
+    "title": "Open to the desk, the network, and the next ticket that is actually a person.",
+    "subtitle": "The roles in view are IT Support Engineer, IT technician, desktop support, and systems and networking. Email is the way to reach Jacob. A phone number is not published.",
+    "regie": {
+      "tag": "01 · Looking for",
+      "title": "Roles that fit the work",
+      "subtitle": "Support that starts with the symptom, then follows it until the setup is steady again.",
+      "availableLabel": "Open to",
+      "roles": [
+        "IT Support Engineer",
+        "IT technician",
+        "Desktop support",
+        "Systems and networking"
+      ],
+      "bullets": [
+        "Desktop support and hardware",
+        "Windows, systems, and networking",
+        "TCP/IP and Wi-Fi",
+        "Troubleshooting with a written trail"
+      ],
+      "meta": "Email jacob.wiseman345{'@'}gmail.com",
+      "cta": "Email Jacob"
+    },
+    "forfait": {
+      "tag": "02 · Already doing",
+      "title": "Two places, stated plainly",
+      "subtitle": "An IT services business he owns, and patient registration that runs in Epic.",
+      "area": "Elkview, in the Charleston, West Virginia area.",
+      "offers": {
+        "support": {
+          "name": "NorthStar IT Services LLC",
+          "desc": "Owner. IT services based in Elkview.",
+          "price": "Owner",
+          "included": "northstarwv.com"
+        },
+        "desktop": {
+          "name": "Thomas Imaging Center",
+          "desc": "Registration Specialist. Patient registration runs in Epic.",
+          "price": "Epic",
+          "included": "WVU Medicine"
+        }
+      },
+      "meta": "No phone number is published.",
+      "cta": "Start with an email"
+    },
+    "domains": {
+      "label": "What the work touches",
+      "intro": "The domains below are the ones Jacob actually works in. Nothing else is claimed."
+    },
+    "reassurance": {
+      "response": "Elkview / Charleston, WV",
+      "noCommit": "CompTIA A+ and Network+",
+      "remote": "CSU Global, Sept 2027"
+    },
+    "process": {
+      "label": "How a problem gets handled",
+      "steps": [
+        {
+          "title": "Listen",
+          "desc": "Write the symptom the way the person said it, before translating it into a cause."
+        },
+        {
+          "title": "Trace",
+          "desc": "Follow the path — hardware, Windows, the network — before changing anything."
+        },
+        {
+          "title": "Restore",
+          "desc": "Leave the setup working, and leave an explanation someone else can use."
+        }
+      ]
+    },
+    "finalCta": {
+      "title": "Hiring for IT support, desktop, or networking?",
+      "text": "Send a note. Hiring starts with an email.",
+      "button": "Email Jacob"
+    },
+    "items": {
+      "custom": {
+        "title": "Epic",
+        "desc": "Patient registration at WVU Medicine’s Thomas Imaging Center runs in Epic."
+      },
+      "redesign": {
+        "title": "Desktop support",
+        "desc": "The day-to-day of getting a person back to a working desk."
+      },
+      "performance": {
+        "title": "Hardware",
+        "desc": "The physical side of a problem: devices, connections, and what the hands can check."
+      },
+      "consulting": {
+        "title": "Windows",
+        "desc": "Operating systems as part of desktop support, not a product pitch."
+      },
+      "ai": {
+        "title": "Networking",
+        "desc": "TCP/IP, Wi-Fi, and the path a problem takes across a network."
+      },
+      "team": {
+        "title": "Troubleshooting",
+        "desc": "A calm sequence: symptom, trace, restore, then say what changed."
+      }
+    }
+  },
+  "skills": {
+    "label": "Domains",
+    "title": "Epic, the desk, the hardware, and the network."
+  },
+  "projects": {
+    "label": "Work",
+    "title": "Five records.",
+    "titleSuffix": "Nothing invented past them.",
+    "view": "View",
+    "back": "Back",
+    "madeWith": "Noted with",
+    "viewSite": "Open link",
+    "viewProject": "View record",
+    "contextLabel": "Context",
+    "approachLabel": "What is true",
+    "stackLabel": "What it touches",
+    "resultLabel": "Where it stands",
+    "previous": "Previous",
+    "next": "Next",
+    "allProjects": "All records",
+    "pagination": "Record navigation",
+    "statsLabel": "Dates",
+    "madeWithAgency": "With",
+    "imageAlt": "{project}, placeholder graphic {n} ({tech})",
+    "items": {
+      "northstar": {
+        "seoTitle": "NorthStar IT Services LLC · Jacob Wiseman",
+        "description": "Jacob owns NorthStar IT Services LLC, an IT services business based in Elkview and working in the Charleston area.",
+        "longDescription": "Jacob owns NorthStar IT Services LLC. It is an IT services business based in Elkview and working in the Charleston, West Virginia area. The public site is northstarwv.com.",
+        "approach": "This record is the business he owns. It is not a client case study, and it does not add tools, dates, or services beyond that fact.",
+        "takeaway1": "The business name is NorthStar IT Services LLC.",
+        "takeaway2": "It is based in Elkview and works in the Charleston area.",
+        "takeaway3": "The public site is northstarwv.com.",
+        "stackNote": "No extra stack is claimed for the business on this page.",
+        "result": "Jacob is the owner. Questions about the business can start at northstarwv.com, or by email.",
+        "seoDescription": "Jacob Wiseman owns NorthStar IT Services LLC, an IT services business in Elkview, West Virginia."
+      },
+      "thomas-imaging": {
+        "seoTitle": "WVU Medicine Thomas Imaging Center · Jacob Wiseman",
+        "description": "Registration Specialist at WVU Medicine’s Thomas Imaging Center. Patient registration runs in Epic.",
+        "longDescription": "Jacob is a Registration Specialist at WVU Medicine’s Thomas Imaging Center, in the Charleston area. Patient registration runs in Epic.",
+        "approach": "The role is patient registration. This page does not add other clinical systems, directories, or ticketing tools.",
+        "takeaway1": "The title is Registration Specialist.",
+        "takeaway2": "The organization is WVU Medicine Thomas Imaging Center.",
+        "takeaway3": "Patient registration runs in Epic.",
+        "stackNote": "Epic is the system named for patient registration. Nothing else is listed.",
+        "result": "The role is current and stated as registration, with Epic as the system that registration runs in.",
+        "seoDescription": "Jacob Wiseman is a Registration Specialist at WVU Medicine Thomas Imaging Center. Patient registration runs in Epic."
+      },
+      "comptia-a-plus": {
+        "seoTitle": "CompTIA A+ · Jacob Wiseman",
+        "description": "CompTIA A+ earned October 2025, expires October 2028.",
+        "longDescription": "CompTIA A+ was earned in October 2025 and expires in October 2028. The badge on this site is the official CompTIA organization badge from Credly.",
+        "approach": "The credential covers the core of hardware, operating systems, and the troubleshooting desktop support is built on.",
+        "takeaway1": "Earned October 2025.",
+        "takeaway2": "Expires October 2028.",
+        "takeaway3": "The badge links to CompTIA’s organization page on Credly, not a personal share link.",
+        "stackNote": "Hardware, Windows, and troubleshooting are the domains this credential sits next to.",
+        "result": "The certification is current through October 2028.",
+        "seoDescription": "Jacob Wiseman earned CompTIA A+ in October 2025. It expires in October 2028.",
+        "stats": {
+          "earned": "Earned",
+          "expires": "Expires"
+        }
+      },
+      "network-plus": {
+        "seoTitle": "CompTIA Network+ · Jacob Wiseman",
+        "description": "CompTIA Network+ earned October 2025, expires October 2028.",
+        "longDescription": "CompTIA Network+ was earned in October 2025 and expires in October 2028. The badge on this site is the official CompTIA organization badge from Credly.",
+        "approach": "The credential covers the core of network infrastructure, operations, and troubleshooting.",
+        "takeaway1": "Earned October 2025.",
+        "takeaway2": "Expires October 2028.",
+        "takeaway3": "The badge links to CompTIA’s organization page on Credly, not a personal share link.",
+        "stackNote": "Networking, TCP/IP, and Wi-Fi are the domains this credential sits next to.",
+        "result": "The certification is current through October 2028.",
+        "seoDescription": "Jacob Wiseman earned CompTIA Network+ in October 2025. It expires in October 2028.",
+        "stats": {
+          "earned": "Earned",
+          "expires": "Expires"
+        }
+      },
+      "csu-global": {
+        "seoTitle": "CSU Global, B.S. Information Technology · Jacob Wiseman",
+        "description": "B.S. Information Technology from CSU Global, expected September 2027.",
+        "longDescription": "Jacob is studying for a B.S. in Information Technology at CSU Global. The degree is expected in September 2027.",
+        "approach": "This record is the degree in progress. It does not add a graduation date, a GPA, or a list of courses.",
+        "takeaway1": "The school is CSU Global.",
+        "takeaway2": "The degree is a B.S. in Information Technology.",
+        "takeaway3": "It is expected in September 2027.",
+        "stackNote": "No extra coursework is listed here.",
+        "result": "The expected date is September 2027.",
+        "seoDescription": "Jacob Wiseman expects a B.S. in Information Technology from CSU Global in September 2027.",
+        "stats": {
+          "expected": "Expected"
+        }
+      }
+    }
+  },
+  "clients": {
+    "label": "Places",
+    "title": "The names that belong on this page."
+  },
+  "contact": {
+    "label": "Contact",
+    "title": "Email is the way in.",
+    "subtitle": "A phone number is not published. Send a note and it opens in your email app, addressed to Jacob.",
+    "form": {
+      "name": "Name",
+      "namePlaceholder": "Your name",
+      "email": "Email",
+      "emailPlaceholder": "you{'@'}example.com",
+      "type": "What this is about",
+      "typePlaceholder": "Select an option",
+      "typeOptions": {
+        "support": "IT Support Engineer",
+        "technician": "IT technician",
+        "desktop": "Desktop support",
+        "systems": "Systems and networking",
+        "other": "Something else"
+      },
+      "message": "Message",
+      "messagePlaceholder": "A role, a question, or a short note.",
+      "submit": "Open email",
+      "submitting": "Opening…",
+      "success": {
+        "title": "Thanks {name}. Your email app should open with this note to Jacob.",
+        "again": "Write another note"
+      },
+      "errors": {
+        "nameRequired": "Please enter your name",
+        "emailRequired": "Please enter your email",
+        "emailInvalid": "That email does not look complete",
+        "typeRequired": "Please select what this is about",
+        "messageRequired": "Please write a message",
+        "messageMin": "A little more detail helps — at least 20 characters",
+        "network": "The email app did not open. Write jacob.wiseman345{'@'}gmail.com directly.",
+        "rateLimit": "Give it a moment, then try again."
+      }
+    }
+  },
+  "footer": {
+    "copyright": "Jacob Wiseman · Elkview, West Virginia",
+    "credit": "Template by Emeric Guyon, MIT License.",
+    "source": "Template source"
+  },
+  "projectsPage": {
+    "label": "Records",
+    "title": "Selected work",
+    "intro": "NorthStar IT Services LLC, registration at Thomas Imaging Center, CompTIA A+, CompTIA Network+, and the CSU Global degree in progress.",
+    "seoTitle": "Selected work · Jacob Wiseman",
+    "seoDescription": "Records for Jacob Wiseman: NorthStar IT Services LLC, WVU Medicine Thomas Imaging Center, CompTIA A+, CompTIA Network+, and CSU Global."
+  },
+  "certsPage": {
+    "label": "Certifications",
+    "title": "Credentials on file",
+    "intro": "CompTIA A+ and Network+ were earned in October 2025 and expire in October 2028. ITIL 4 Foundation was earned in August 2025. Badges are the official organization artwork from Credly.",
+    "seoTitle": "Certifications · Jacob Wiseman",
+    "seoDescription": "CompTIA A+ and Network+, earned October 2025 and expiring October 2028, and ITIL 4 Foundation, earned August 2025.",
+    "earned": "Earned",
+    "expires": "Expires",
+    "noExpiry": "No expiry listed",
+    "viewBadge": "View on Credly"
+  }
+}

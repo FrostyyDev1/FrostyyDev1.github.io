@@ -1,0 +1,1450 @@
+@import './fonts.css';
+@import 'tailwindcss';
+
+html,
+body {
+  overflow-x: clip;
+}
+
+/* Lenis smooth scroll */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: clip;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* ============================================================
+ * Project Detail Page — cinematic editorial layout
+ * Hero (fullscreen) → Stats band → 2-col body → Footer cards
+ * ============================================================ */
+
+.project-page {
+  position: relative;
+
+  /* Theme-aware hero palette (consumed by topbar + hero) */
+  --hero-bg: #f3efe6;
+  --hero-fg: #1a1814;
+  --hero-fg-soft: rgb(26 24 20 / 60%);
+  --hero-fg-faint: rgb(26 24 20 / 6%);
+  --hero-fg-inverse: #f3efe6;
+}
+
+.dark .project-page {
+  --hero-bg: #0d0d0f;
+  --hero-fg: #f3efe6;
+  --hero-fg-soft: rgb(243 239 230 / 65%);
+  --hero-fg-faint: rgb(243 239 230 / 6%);
+  --hero-fg-inverse: #0d0d0f;
+}
+
+/* Topbar (back button + agency) — sits above the hero */
+.project-topbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 7rem 1.25rem 1rem;
+  pointer-events: none;
+}
+
+.project-topbar > * {
+  pointer-events: auto;
+}
+
+@media (width >= 768px) {
+  .project-topbar {
+    padding: 7rem 2rem 1rem;
+  }
+}
+
+.project-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  letter-spacing: 0.02em;
+  color: var(--hero-fg-soft);
+  background: transparent;
+  border: 0;
+  padding: 0.4rem 0.6rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: color 0.25s ease, background-color 0.25s ease;
+}
+
+.project-back:hover {
+  color: var(--hero-fg);
+  background: var(--hero-fg-faint);
+}
+
+.project-topbar-agency {
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--hero-fg-soft);
+}
+
+.project-topbar-agency a {
+  color: var(--hero-fg);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  transition: opacity 0.2s ease;
+}
+
+.project-topbar-agency a:hover {
+  opacity: 0.8;
+}
+
+/* HERO — typography-driven. Neutral bg (cream light / dark dark), accent only via faint halo. */
+.project-hero {
+  position: relative;
+  width: 100%;
+  height: 65svh;
+  min-height: 460px;
+  overflow: hidden;
+  background: var(--hero-bg);
+  color: var(--hero-fg);
+  isolation: isolate;
+}
+
+.project-hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: var(--hero-bg);
+}
+
+.project-hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    /* Faint accent halo bottom-right — only signal of project color */
+    radial-gradient(
+      ellipse 60% 55% at 100% 100%,
+      color-mix(in srgb, var(--project-accent, var(--color-primary)) 14%, transparent) 0%,
+      transparent 65%
+    );
+  pointer-events: none;
+}
+
+/* Big faded watermark — year or project mark */
+.project-hero-watermark {
+  position: absolute;
+  right: -1.5vw;
+  bottom: -3vw;
+  z-index: 1;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(6rem, 20vw, 18rem);
+  line-height: 0.8;
+  letter-spacing: -0.04em;
+  color: var(--hero-fg-faint);
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+  will-change: transform;
+}
+
+.project-hero-content {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 1.25rem 3rem;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+@media (width >= 768px) {
+  .project-hero-content {
+    padding: 0 2rem 4rem;
+  }
+}
+
+.project-hero-meta-top {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--hero-fg-soft);
+}
+
+.project-hero-rule {
+  display: inline-block;
+  width: 2.25rem;
+  height: 1px;
+  background: var(--hero-fg-soft);
+}
+
+.project-hero-tag {
+  font-variant-numeric: tabular-nums;
+}
+
+.project-hero-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2.75rem, 9.5vw, 9rem);
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  color: var(--hero-fg);
+  text-wrap: balance;
+  margin: 0 0 1.25rem;
+  position: relative;
+  z-index: 2;
+  will-change: transform;
+}
+
+.project-hero-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.project-hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+/* Override Badge styling on hero — theme-aware via hero vars */
+.project-hero-tags > * {
+  background: var(--hero-fg-faint);
+  color: var(--hero-fg) !important;
+  border-color: color-mix(in srgb, var(--hero-fg) 22%, transparent) !important;
+  backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+/* CTA — outline style, swaps to filled on hover */
+.project-hero-cta {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--hero-fg);
+  border: 1px solid var(--hero-fg);
+  border-radius: 9999px;
+  background: transparent;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.project-hero-cta:hover {
+  background: var(--hero-fg);
+  color: var(--hero-fg-inverse);
+  border-color: var(--hero-fg);
+}
+
+.project-hero-cta svg {
+  transition: transform 0.3s ease;
+}
+
+.project-hero-cta:hover svg {
+  transform: translate(2px, -2px);
+}
+
+.project-hero-scroll-cue {
+  position: absolute;
+  bottom: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.project-hero-scroll-line {
+  display: block;
+  width: 1px;
+  height: 36px;
+  background: linear-gradient(180deg, transparent, var(--hero-fg-soft), transparent);
+  animation: project-hero-scroll-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes project-hero-scroll-pulse {
+  0%, 100% { opacity: 0.25; transform: translateY(0); }
+  50%      { opacity: 1;    transform: translateY(8px); }
+}
+
+/* STATS band — big animated numbers */
+.project-stats {
+  position: relative;
+  background: var(--color-foreground);
+  color: var(--color-background);
+  padding: 4rem 1.25rem;
+  overflow: hidden;
+  border-bottom: 1px solid rgb(255 255 255 / 6%);
+}
+
+@media (width >= 768px) {
+  .project-stats {
+    padding: 6rem 2rem;
+  }
+}
+
+.project-stats-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem 1.5rem;
+  max-width: 1280px;
+  margin: 0 auto;
+  list-style: none;
+  padding: 0;
+}
+
+@media (width >= 768px) {
+  .project-stats-list {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 2.5rem;
+  }
+}
+
+.project-stat-wrap {
+  overflow: hidden;
+}
+
+.project-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+  padding-left: 1rem;
+  border-left: 2px solid var(--project-accent, var(--color-primary));
+  will-change: transform;
+}
+
+.project-stat-value {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.5rem, 6vw, 4.75rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-background);
+}
+
+.project-stat-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: currentcolor;
+  opacity: 0.55;
+}
+
+/* BODY — 2-col layout (existing structure preserved) */
+.project-body-wrapper {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 6rem 1.25rem 2rem;
+}
+
+@media (width >= 768px) {
+  .project-body-wrapper {
+    padding: 8rem 2rem 4rem;
+  }
+}
+
+.project-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+@media (width >= 768px) {
+  .project-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .project-images {
+    order: -1; /* images à gauche sur desktop */
+    position: sticky;
+    top: 6rem;
+  }
+}
+
+/* Section number — big, accent-colored, pinned-feel */
+.project-section {
+  position: relative;
+}
+
+.project-section-num {
+  font-size: 0.6875rem;
+  letter-spacing: 0.3em;
+}
+
+/* FOOTER NAV — full-bleed accent cards */
+.project-footer-nav {
+  margin-top: 6rem;
+  border-top: 1px solid var(--color-border);
+}
+
+@media (width >= 768px) {
+  .project-footer-nav {
+    margin-top: 9rem;
+  }
+}
+
+.project-footer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+@media (width >= 768px) {
+  .project-footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.project-footer-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 3rem 1.5rem;
+  overflow: hidden;
+  isolation: isolate;
+  transition: color 0.4s ease;
+}
+
+@media (width >= 768px) {
+  .project-footer-card {
+    padding: 5rem 3rem;
+    min-height: 280px;
+    justify-content: flex-end;
+  }
+}
+
+.project-footer-card--next,
+.project-footer-card--right {
+  text-align: right;
+  align-items: flex-end;
+}
+
+.project-footer-card + .project-footer-card {
+  border-top: 1px solid var(--color-border);
+}
+
+@media (width >= 768px) {
+  .project-footer-card + .project-footer-card {
+    border-top: 0;
+    border-left: 1px solid var(--color-border);
+  }
+}
+
+.project-footer-kicker {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--color-muted-foreground);
+  transition: color 0.4s ease;
+}
+
+.project-footer-card:hover .project-footer-kicker {
+  color: var(--color-foreground);
+}
+
+/* Arrow glides on hover */
+.project-footer-arrow {
+  display: inline-block;
+  transition: transform 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.project-footer-card:hover .project-footer-arrow--left {
+  transform: translateX(-10px);
+}
+
+.project-footer-card:hover .project-footer-arrow--right {
+  transform: translateX(10px);
+}
+
+/* Hairline rule under the title — slides in from the same side as the arrow */
+.project-footer-title {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.5rem;
+}
+
+.project-footer-title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: currentcolor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.project-footer-card--next .project-footer-title::after,
+.project-footer-card--right .project-footer-title::after {
+  transform-origin: right;
+}
+
+.project-footer-card:hover .project-footer-title::after {
+  transform: scaleX(1);
+}
+
+.project-footer-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.75rem, 4vw, 3rem);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  color: var(--color-foreground);
+  transition: color 0.4s ease;
+}
+
+.project-footer-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+}
+
+.project-footer-card--next .project-footer-tags,
+.project-footer-card--right .project-footer-tags {
+  justify-content: flex-end;
+}
+
+.project-footer-tags > span {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  padding: 0.2rem 0.55rem;
+  border: 1px solid var(--color-border);
+  border-radius: 9999px;
+  color: var(--color-muted-foreground);
+  transition: color 0.4s ease, border-color 0.4s ease;
+}
+
+/* Reduced motion — kill the dramatic stuff */
+@media (prefers-reduced-motion: reduce) {
+  .project-hero-title,
+  .project-hero-watermark,
+  .project-stat {
+    transform: none !important;
+    will-change: auto;
+  }
+
+  .project-hero-scroll-line {
+    animation: none;
+  }
+
+  .project-footer-card::before {
+    transition: transform 0.001ms;
+  }
+}
+
+@theme {
+  --breakpoint-nav: 900px;
+  --font-sans: 'Satoshi', sans-serif;
+  --font-display: 'Clash Display', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Ivory theme */
+  --color-background: #f3efe6;
+  --color-foreground: #1a1814;
+  --color-primary: #5f6e52;
+  --color-primary-foreground: #f3efe6;
+  --color-accent-cyan: #8ea584;
+  --color-accent-magenta: #c4a574;
+  --color-accent-amber: #c4a574;
+  --color-surface: #f7f4ec;
+  --color-surface-elevated: #fffdf8;
+  --color-muted: #e7e1d4;
+  --color-muted-foreground: #5c574e;
+  --color-border: #ddd6c8;
+}
+
+/* Section title — H2 de section */
+.section-title {
+  font-family: var(--font-display);
+  font-size: 1.875rem; /* text-3xl */
+  font-weight: 700;
+  line-height: 1.25; /* leading-tight */
+  color: var(--color-foreground);
+}
+
+@media (width >= 768px) {
+  .section-title {
+    font-size: 2.25rem; /* md:text-4xl */
+  }
+}
+
+/* Section label — petit titre de section (À propos, Services, etc.) */
+.section-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--color-primary);
+  transition: color 2s ease;
+}
+
+/* Dark theme overrides */
+.dark {
+  --color-background: #0d0d0f;
+  --color-foreground: #f3efe6;
+  --color-primary: #b7c4a8;
+  --color-primary-foreground: #1a1814;
+  --color-accent-cyan: #8ea584;
+  --color-accent-magenta: #c4a574;
+  --color-accent-amber: #d7b59a;
+  --color-surface: #141412;
+  --color-surface-elevated: #1c1b18;
+  --color-muted: #1a1916;
+  --color-muted-foreground: #a39e93;
+  --color-border: #2a2824;
+}
+
+/* Hide page until JS is ready — prevents flash of unanimated content */
+.app-loading main {
+  opacity: 0;
+}
+
+main {
+  transition: opacity 0.3s ease;
+}
+
+/* Smooth color cycling transition */
+:root {
+  transition: --color-primary 2s ease;
+}
+
+@property --color-primary {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #8ea584;
+}
+
+.wiseman {
+  display: inline-block;
+  white-space: nowrap;
+  hyphens: none;
+  word-break: keep-all;
+  overflow-wrap: normal;
+}
+
+:root {
+  accent-color: #8ea584;
+}
+
+:focus-visible {
+  outline: 2px solid #8ea584;
+  outline-offset: 2px;
+}
+
+/* Text selection follows the primary color cycle */
+::selection {
+  background: color-mix(in srgb, var(--color-primary) 28%, transparent);
+  color: inherit;
+}
+
+
+/* Noise grain overlay */
+.grain::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.02;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  mix-blend-mode: overlay;
+}
+
+.dark .grain::after {
+  opacity: 0.035;
+}
+
+/* Custom cursor — ring (halo, slow trail) + dot (precise tight follow).
+ * Both use --color-primary which is cycled by useColorCycle, so the cursor
+ * inherits the site's animated brand color in real time.
+ * Centering via GSAP xPercent/yPercent (-50/-50).
+ */
+.custom-cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--color-primary) 22%, transparent);
+  pointer-events: none;
+  z-index: 10000;
+  transition: width 0.3s cubic-bezier(0.65, 0, 0.35, 1),
+              height 0.3s cubic-bezier(0.65, 0, 0.35, 1),
+              background-color 0.3s ease;
+}
+
+.custom-cursor-ring.hovering {
+  width: 56px;
+  height: 56px;
+  background: color-mix(in srgb, var(--color-primary) 30%, transparent);
+}
+
+.custom-cursor-ring.hovering-project {
+  width: 96px;
+  height: 96px;
+  background: color-mix(in srgb, var(--color-primary) 35%, transparent);
+}
+
+.custom-cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  pointer-events: none;
+  z-index: 10001;
+  transition: background-color 0.3s ease, opacity 0.2s ease;
+}
+
+.custom-cursor-dot.is-hidden {
+  opacity: 0;
+}
+
+.custom-cursor-label {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 10001;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--color-foreground);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.custom-cursor-label.is-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+}
+
+.custom-cursor-label.visible {
+  opacity: 1;
+}
+
+/* Hide custom cursor on touch devices */
+@media (hover: none), (pointer: coarse) {
+  .custom-cursor-ring,
+  .custom-cursor-dot,
+  .custom-cursor-label {
+    display: none !important;
+  }
+}
+
+/* ============================================================
+ * Page transition curtain — option A
+ * Single fixed panel that slides up to cover, then up to reveal.
+ * Color is set per-project via accentColor (data-driven via JS).
+ * ============================================================ */
+.page-transition-curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  transform: translateY(101%);
+  will-change: transform;
+  visibility: hidden;
+}
+
+/* Keep the curtain hidden when reduced motion is preferred — collapse to instant */
+@media (prefers-reduced-motion: reduce) {
+  .page-transition-curtain {
+    display: none;
+  }
+}
+
+/* When the custom cursor is active, hide the native cursor everywhere */
+.has-custom-cursor,
+.has-custom-cursor * {
+  cursor: none !important;
+}
+
+@media (hover: none), (pointer: coarse) {
+  .has-custom-cursor,
+  .has-custom-cursor * {
+    cursor: auto !important;
+  }
+}
+
+/* Section glow effect */
+.section-glow {
+  position: absolute;
+  z-index: 0;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  filter: blur(150px);
+  opacity: 0.07;
+  pointer-events: none;
+  transition: background-color 1.5s ease;
+}
+
+/* Marquee animation */
+@keyframes marquee-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes marquee-right {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+
+.animate-marquee-left {
+  animation: marquee-left 40s linear infinite;
+}
+
+.animate-marquee-right {
+  animation: marquee-right 40s linear infinite;
+}
+
+.marquee-track:hover .animate-marquee-left,
+.marquee-track:hover .animate-marquee-right {
+  animation-duration: 80s;
+}
+
+/* Scroll indicator pulse */
+@keyframes pulse-scroll {
+  0%, 100% {
+    opacity: 0.4;
+    transform: translateY(0);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translateY(6px);
+  }
+}
+
+.animate-scroll-pulse {
+  animation: pulse-scroll 2s ease-in-out infinite;
+}
+
+/* Letter reveal animation helper */
+.letter-reveal {
+  display: inline-block;
+  overflow: hidden;
+}
+
+.letter-reveal span {
+  display: inline-block;
+  transform: translateY(110%);
+}
+
+/* Hero code zone — full viewport, fades at edges */
+.hero-code-zone {
+  overflow: hidden;
+  mask-image:
+    linear-gradient(to bottom, black 60%, transparent 100%),
+    linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+  mask-composite: intersect;
+  mask-composite: source-in;
+}
+
+.hero-code-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Skill logos: dark by default (light mode), white by default (dark mode) */
+.skill-logo {
+  filter: brightness(0);
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.dark .skill-logo {
+  filter: brightness(0) invert(1);
+  opacity: 0.7;
+}
+
+/* When a skill is hovered (icon or text): others dim */
+.skills-icons.has-hover .skill-logo:not(.skill-logo--active) {
+  opacity: 0.25;
+}
+
+/* Skill names — same underline animation as nav links */
+.skill-name-text::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background: var(--color-primary);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.28s cubic-bezier(0.55, 0, 1, 0.45);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.skill-name--active::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Nav links — underline slides in from left, out to right.
+   `will-change: transform` keeps the pseudo-element on its own GPU layer
+   even at rest, so a 1px line stays the same crispness during and after
+   the transform animation (otherwise the compositor demotes the layer
+   on settle and the line "snaps" thinner). */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background: var(--color-primary);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.28s cubic-bezier(0.55, 0, 1, 0.45);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.nav-link:hover::after,
+.nav-link--active::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Same animation as .nav-link but triggered by a .group ancestor hover —
+   used when the hover surface is a flex link wrapping an icon + text. */
+.underline-grow {
+  position: relative;
+}
+
+.underline-grow::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background: var(--color-primary);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.28s cubic-bezier(0.55, 0, 1, 0.45);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.group:hover .underline-grow::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.nav-cta {
+  border: 1px solid #000;
+  border-radius: 9999px;
+}
+
+.dark .nav-cta {
+  border-color: #fff;
+}
+
+/* ============================================================
+ * Skip link — accessibility
+ * Hidden offscreen, slides into view on keyboard focus.
+ * ============================================================ */
+.skip-link {
+  position: fixed;
+  top: -100px;
+  left: 1rem;
+  z-index: 10001;
+  padding: 0.75rem 1.25rem;
+  background: var(--color-foreground);
+  color: var(--color-background);
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  top: 1rem;
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+/* ============================================================
+ * Focus-visible — accessibility
+ * Keyboard-only focus ring, won't trigger on mouse clicks.
+ * Uses the cycling --color-primary so it stays on-brand.
+ * ============================================================ */
+:focus {
+  outline: none;
+}
+
+:where(a, button, [role='button'], input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+  border-radius: 4px;
+  transition: outline-offset 0.15s ease;
+}
+
+/* ============================================================
+ * Reduced motion — accessibility
+ * Respects the user's OS preference. Strips decorative motion:
+ *  - shrinks transition/animation durations to ~zero
+ *  - freezes the --color-primary cycling transition
+ *  - disables noise grain, marquee, scroll-pulse, custom-cursor scaling
+ *  - opts out of smooth scroll (Lenis honors this in JS too)
+ * Functional motion (page navigation, focus, etc.) stays usable.
+ * ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  :root {
+    transition: none !important;
+  }
+
+  .grain::after {
+    animation: none !important;
+  }
+
+  .animate-scroll-pulse,
+  [class*='animate-marquee'] {
+    animation: none !important;
+  }
+
+  .custom-cursor {
+    transition: none !important;
+  }
+}
+
+/* ============================================================
+ * Reduced data — Save-Data hint
+ * Strips heavy decorative layers when the user opted into
+ * data savings (mobile data, slow networks, capped plans).
+ * ============================================================ */
+@media (prefers-reduced-data: reduce) {
+  .grain::after,
+  .custom-cursor-ring,
+  .custom-cursor-dot,
+  .custom-cursor-label {
+    display: none !important;
+  }
+
+  .hero-code-zone {
+    display: none !important;
+  }
+
+  [class*='animate-marquee'] {
+    animation: none !important;
+  }
+}
+
+/* ============================================================
+ * Services & Devis section
+ * Theme-aware (light/dark). Accent = the site's cycling
+ * --color-primary, expressed via color-mix.
+ * ============================================================ */
+
+.svc-section {
+  --svc-accent: var(--color-primary);
+}
+
+/* Base card (solid) */
+.svc-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  padding: 2rem;
+  box-shadow: 0 8px 30px rgb(0 0 0 / 6%);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.dark .svc-card {
+  box-shadow: 0 8px 30px rgb(0 0 0 / 35%);
+}
+
+@media (width >= 768px) {
+  .svc-card { padding: 2.5rem; }
+}
+
+.svc-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 24px 60px rgb(0 0 0 / 12%);
+}
+
+.dark .svc-card:hover {
+  box-shadow: 0 24px 60px rgb(0 0 0 / 50%);
+}
+
+/* Régie — accent-tinted, highlighted */
+.svc-card--regie {
+  border-color: color-mix(in srgb, var(--svc-accent) 38%, var(--color-border));
+  background:
+    linear-gradient(150deg, color-mix(in srgb, var(--svc-accent) 10%, transparent), transparent 60%),
+    var(--color-surface);
+}
+
+.svc-card--regie:hover {
+  border-color: color-mix(in srgb, var(--svc-accent) 70%, transparent);
+}
+
+.svc-card--forfait:hover {
+  border-color: color-mix(in srgb, var(--color-foreground) 28%, var(--color-border));
+}
+
+/* Ambient glow inside régie card */
+.svc-glow {
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: var(--svc-accent);
+  opacity: 0.12;
+  filter: blur(60px);
+  pointer-events: none;
+  transition: opacity 0.4s ease, background-color 1.5s ease;
+}
+.svc-card--regie:hover .svc-glow { opacity: 0.2; }
+
+/* Card header icon chip */
+.svc-head-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--color-foreground) 6%, transparent);
+  color: var(--color-foreground);
+  flex-shrink: 0;
+}
+
+.svc-head-icon--accent {
+  background: color-mix(in srgb, var(--svc-accent) 14%, transparent);
+  color: var(--svc-accent);
+  transition: color 1.5s ease, background-color 1.5s ease;
+}
+
+/* Card tag / eyebrow */
+.svc-tag {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-muted-foreground);
+}
+
+.svc-tag--accent {
+  color: var(--svc-accent);
+  transition: color 1.5s ease;
+}
+
+/* Rotating role box */
+.svc-role-box {
+  border-radius: 14px;
+  border: 1px solid color-mix(in srgb, var(--svc-accent) 22%, transparent);
+  background: color-mix(in srgb, var(--svc-accent) 6%, transparent);
+  padding: 0.85rem 1.1rem;
+}
+
+.svc-role-label {
+  display: block;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-muted-foreground);
+}
+
+.svc-role-track {
+  height: 1.6rem;
+  margin-top: 0.15rem;
+  overflow: hidden;
+}
+
+.svc-role-word {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--svc-accent);
+  transition: color 1.5s ease;
+}
+
+.svc-role-enter-active,
+.svc-role-leave-active {
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+.svc-role-enter-from {
+  opacity: 0;
+  transform: translateY(10px);
+}
+.svc-role-leave-to {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+/* Check bullet */
+.svc-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: color-mix(in srgb, var(--svc-accent) 16%, transparent);
+  color: var(--svc-accent);
+  transition: color 1.5s ease;
+}
+
+/* Buttons */
+.svc-btn {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 9999px;
+  padding: 0.7rem 1.4rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  background: var(--color-foreground);
+  color: var(--color-background);
+  border: 1px solid var(--color-foreground);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.svc-btn:hover { opacity: 0.88; }
+
+.svc-btn--outline {
+  background: transparent;
+  color: var(--color-foreground);
+  border-color: var(--color-border);
+}
+
+.svc-btn--outline:hover {
+  opacity: 1;
+  background: var(--color-foreground);
+  color: var(--color-background);
+  border-color: var(--color-foreground);
+}
+
+/* Forfait offer rows */
+.svc-offer {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  cursor: pointer;
+  text-align: left;
+  border-radius: 16px;
+  border: 1px solid var(--color-border);
+  background: color-mix(in srgb, var(--color-foreground) 2%, transparent);
+  padding: 0.95rem 1.1rem;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.svc-offer:hover {
+  background: color-mix(in srgb, var(--color-foreground) 5%, transparent);
+  border-color: color-mix(in srgb, var(--svc-accent) 55%, transparent);
+}
+.svc-offer-main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+.svc-offer-name {
+  font-weight: 700;
+  color: var(--color-foreground);
+}
+.svc-offer-desc {
+  font-size: 0.8125rem;
+  color: var(--color-muted-foreground);
+}
+
+.svc-offer-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.15rem;
+  flex-shrink: 0;
+  text-align: right;
+}
+
+.svc-offer-price {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--svc-accent);
+  transition: color 1.5s ease;
+}
+
+.svc-offer-delay {
+  max-width: 11rem;
+  font-size: 0.6875rem;
+  line-height: 1.4;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-muted-foreground);
+}
+
+/* Domain cards (6 SEO) */
+.svc-domain {
+  border-radius: 20px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  padding: 1.6rem;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.35s ease;
+}
+
+.svc-domain:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--c) 45%, var(--color-border));
+}
+
+.svc-domain-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  color: var(--c);
+  background: color-mix(in srgb, var(--c) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--c) 22%, transparent);
+}
+
+/* Reassurance pills */
+.svc-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  border: 1px solid var(--color-border);
+  background: color-mix(in srgb, var(--color-foreground) 3%, transparent);
+  padding: 0.5rem 1rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-foreground);
+}
+.svc-pill svg {
+  color: var(--svc-accent);
+  transition: color 1.5s ease;
+}
+
+/* Process steps */
+.svc-step {
+  border-radius: 18px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  padding: 1.6rem;
+}
+
+.svc-step-num {
+  font-family: var(--font-display);
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--svc-accent);
+  transition: color 1.5s ease;
+}
+
+/* Final CTA banner */
+.svc-final {
+  position: relative;
+  overflow: hidden;
+  border-radius: 28px;
+  border: 1px solid color-mix(in srgb, var(--svc-accent) 30%, var(--color-border));
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--svc-accent) 12%, transparent), transparent 70%),
+    var(--color-surface);
+  padding: 3rem 1.5rem;
+}
+
+@media (width >= 768px) {
+  .svc-final { padding: 4rem 2rem; }
+}
+
+.svc-final-glow {
+  position: absolute;
+  bottom: -120px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 420px;
+  height: 240px;
+  border-radius: 50%;
+  background: var(--svc-accent);
+  opacity: 0.12;
+  filter: blur(80px);
+  pointer-events: none;
+  transition: background-color 1.5s ease;
+}
