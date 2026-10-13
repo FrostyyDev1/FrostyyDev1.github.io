@@ -4,7 +4,7 @@ import path from 'node:path'
 const OUTPUT_DIR = path.resolve('public')
 
 // Static (non-animated) icon for PNG raster + maskable.
-// Uses cyan #06B6D4 — the initial color of the cycle.
+// Uses sage #8ea584.
 function buildSvg(size: number, maskable = false): string {
   // Maskable icons need a safe-zone (~10% padding) inside which the design
   // must fit, since launchers may crop the outer ring on round/squircle masks.
@@ -15,9 +15,9 @@ function buildSvg(size: number, maskable = false): string {
   const textY = Math.round(inset + tileSize * 0.72)
 
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">
-  <rect width="${size}" height="${size}" fill="${maskable ? '#06B6D4' : 'transparent'}"/>
-  <rect x="${inset}" y="${inset}" width="${tileSize}" height="${tileSize}" rx="${radius}" fill="#06B6D4"/>
-  <text x="${size / 2}" y="${textY}" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="${fontSize}" fill="#ffffff">eg</text>
+  <rect width="${size}" height="${size}" fill="${maskable ? '#8ea584' : 'transparent'}"/>
+  <rect x="${inset}" y="${inset}" width="${tileSize}" height="${tileSize}" rx="${radius}" fill="#8ea584"/>
+  <text x="${size / 2}" y="${textY}" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="${fontSize}" fill="#1a1814">jw</text>
 </svg>`
 }
 

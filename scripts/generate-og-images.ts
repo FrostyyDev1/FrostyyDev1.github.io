@@ -11,12 +11,12 @@ const configs = [
   {
     lang: 'fr',
     output: 'og-image-fr.jpg',
-    label: 'Développeur Fullstack Freelance',
+    label: 'IT support · Elkview, West Virginia',
   },
   {
     lang: 'en',
     output: 'og-image-en.jpg',
-    label: 'Fullstack Freelance Developer',
+    label: 'IT support · Elkview, West Virginia',
   },
 ]
 
@@ -33,7 +33,7 @@ function buildHtml(config: typeof configs[0]) {
   body {
     width: 1200px;
     height: 630px;
-    background: #080d1a;
+    background: #0d0d0f;
     display: flex;
     overflow: hidden;
     font-family: 'Clash Display', system-ui, sans-serif;
@@ -51,7 +51,7 @@ function buildHtml(config: typeof configs[0]) {
   .divider {
     width: 48px;
     height: 2px;
-    background: #06B6D4;
+    background: #8ea584;
   }
 
   .name {
@@ -78,7 +78,7 @@ function buildHtml(config: typeof configs[0]) {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(to right, #080d1a 0%, transparent 35%);
+    background: linear-gradient(to right, #0d0d0f 0%, transparent 35%);
     z-index: 1;
   }
 
@@ -94,7 +94,7 @@ function buildHtml(config: typeof configs[0]) {
 <body>
   <div class="left">
     <div class="divider"></div>
-    <div class="name">Emeric Guyon</div>
+    <div class="name">Jacob Wiseman</div>
     <div class="label">${config.label}</div>
   </div>
   <div class="right">
