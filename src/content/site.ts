@@ -1,6 +1,5 @@
 /**
  * Public facts for the portfolio.
- * TODO: replace contactEmailLabel / contactEmailHref with Jacob's real email.
  * Do not publish a phone number.
  */
 
@@ -22,9 +21,8 @@ export const person = {
   businessUrlLabel: "northstarwv.com",
 };
 
-/** TODO: replace with Jacob's real email address. */
-export const contactEmailLabel = "TODO: add email";
-export const contactEmailHref = "mailto:TODO";
+export const contactEmailLabel = "jacob.wiseman345@gmail.com";
+export const contactEmailHref = "mailto:jacob.wiseman345@gmail.com";
 
 /**
  * Official badge artwork from Credly organization pages.
@@ -56,7 +54,7 @@ export const certifications = [
     image: "/certs/comptia-network-plus.png",
     imageAlt: "CompTIA Network+ ce certification badge",
     earned: "October 2025",
-    expires: null,
+    expires: "October 2028",
     description:
       "Network infrastructure, operations, wired and wireless troubleshooting, and security concepts.",
     focus: ["TCP/IP", "Wi-Fi", "Infrastructure", "Troubleshooting"],

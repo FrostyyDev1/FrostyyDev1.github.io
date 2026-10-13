@@ -22,7 +22,64 @@ type Line =
   | { kind: "text"; text: string; tone?: "dim" | "error" }
   | { kind: "banner"; heading?: boolean }
   | { kind: "links"; items: LinkItem[] }
-  | { kind: "pair"; label: string; value: string; tone?: "cmd" };
+  | { kind: "pair"; label: string; value: string; tone?: "cmd" }
+  | { kind: "pre"; text: string }
+  | { kind: "suggest"; command: string }
+  | { kind: "matrix" }
+  | { kind: "train" };
+
+const MENU = [
+  "help",
+  "whoami",
+  "about",
+  "experience",
+  "projects",
+  "certs",
+  "resume",
+  "contact",
+  "clear",
+  "neofetch",
+  "fortune",
+  "coffee",
+  "matrix",
+  "sl",
+  "ping",
+  "sudo hire-jacob",
+  "ping recruiter",
+] as const;
+
+function editDistance(a: string, b: string) {
+  if (Math.abs(a.length - b.length) > 4) return 9;
+  const rows = Array.from({ length: a.length + 1 }, () =>
+    new Array<number>(b.length + 1).fill(0),
+  );
+  for (let i = 0; i <= a.length; i++) rows[i][0] = i;
+  for (let j = 0; j <= b.length; j++) rows[0][j] = j;
+  for (let i = 1; i <= a.length; i++) {
+    for (let j = 1; j <= b.length; j++) {
+      const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+      rows[i][j] = Math.min(
+        rows[i - 1][j] + 1,
+        rows[i][j - 1] + 1,
+        rows[i - 1][j - 1] + cost,
+      );
+    }
+  }
+  return rows[a.length][b.length];
+}
+
+function suggestion(input: string) {
+  let best: string | null = null;
+  let bestDistance = 3;
+  for (const command of MENU) {
+    const distance = editDistance(input, command);
+    if (distance > 0 && distance < bestDistance) {
+      best = command;
+      bestDistance = distance;
+    }
+  }
+  return best;
+}
 
 type Entry = {
   id: string;
@@ -61,7 +118,70 @@ function Prompt() {
   );
 }
 
-function LineView({ line }: { line: Line }) {
+function MatrixRain() {
+  const [skipped, setSkipped] = useState(false);
+  if (skipped) {
+    return <p>Rain skipped. The résumé is less dramatic.</p>;
+  }
+  return (
+    <div className="matrix">
+      <div className="mx" aria-hidden="true">
+        {["01001101", "10110100", "00101110", "11010010", "01101001", "10010110"].map(
+          (column) => (
+            <span key={column}>{column}</span>
+          ),
+        )}
+      </div>
+      <p className="matrix-still">Motion is off. The homelab is still up.</p>
+      <p>There is no spoon. There is a résumé.</p>
+      <button type="button" className="term-skip" onClick={() => setSkipped(true)}>
+        Skip
+      </button>
+    </div>
+  );
+}
+
+function LineView({
+  line,
+  onRun,
+}: {
+  line: Line;
+  onRun?: (command: string) => void;
+}) {
+  if (line.kind === "matrix") {
+    return <MatrixRain />;
+  }
+
+  if (line.kind === "train") {
+    return (
+      <div className="sl-window" aria-hidden="true">
+        <pre className="sl-train">{`      __
+   __|  |__
+  |  o  o  |____
+  |________|    \\
+    U    U`}</pre>
+      </div>
+    );
+  }
+
+  if (line.kind === "pre") {
+    return <pre className="term-pre">{line.text}</pre>;
+  }
+
+  if (line.kind === "suggest") {
+    return (
+      <p>
+        <button
+          type="button"
+          className="term-suggest"
+          onClick={() => onRun?.(line.command)}
+        >
+          did you mean {line.command}?
+        </button>
+      </p>
+    );
+  }
+
   if (line.kind === "banner") {
     return (
       <div className="term-banner-wrap">
@@ -123,7 +243,13 @@ function LineView({ line }: { line: Line }) {
   );
 }
 
-function Block({ entry }: { entry: Entry }) {
+function Block({
+  entry,
+  onRun,
+}: {
+  entry: Entry;
+  onRun?: (command: string) => void;
+}) {
   return (
     <div className="term-block">
       <p className="term-cmd">
@@ -132,7 +258,7 @@ function Block({ entry }: { entry: Entry }) {
       </p>
       <div className="term-out">
         {entry.lines.map((line, index) => (
-          <LineView key={`${entry.id}-${index}`} line={line} />
+          <LineView key={`${entry.id}-${index}`} line={line} onRun={onRun} />
         ))}
       </div>
     </div>
@@ -211,6 +337,11 @@ function respond(raw: string): Entry | "clear" | null {
       { kind: "pair", label: "resume", value: "open the PDF", tone: "cmd" },
       { kind: "pair", label: "contact", value: "email, LinkedIn, location", tone: "cmd" },
       { kind: "pair", label: "clear", value: "clear the screen", tone: "cmd" },
+      {
+        kind: "text",
+        text: "off the menu: neofetch, fortune, coffee, matrix, sl, ping recruiter, sudo hire-jacob",
+        tone: "dim",
+      },
     ]);
   }
 
@@ -287,9 +418,118 @@ function respond(raw: string): Entry | "clear" | null {
 
   if (key === "clear") return "clear";
 
+  if (
+    key === "sudo hire-jacob" ||
+    key === "sudo hire jacob" ||
+    key === "hire-jacob" ||
+    key === "hire jacob"
+  ) {
+    return entry([
+      { kind: "text", text: "[sudo] password for recruiter: (already accepted)" },
+      {
+        kind: "text",
+        text: "Jacob is open to IT support, help desk, desktop support, and networking. Elkview, WV. On-site or hybrid around Charleston.",
+      },
+      {
+        kind: "links",
+        items: [
+          { href: contactEmailHref, label: contactEmailLabel },
+          { href: person.resumeHref, label: "resume.pdf" },
+          { href: "/contact/", label: "contact/" },
+        ],
+      },
+    ]);
+  }
+
+  if (key.startsWith("sudo")) {
+    return entry([
+      {
+        kind: "text",
+        text: "jacob is not in the sudoers file. This incident will be reported to nobody.",
+        tone: "error",
+      },
+      { kind: "suggest", command: "sudo hire-jacob" },
+    ]);
+  }
+
+  if (key === "neofetch") {
+    return entry([
+      {
+        kind: "pre",
+        text: [
+          "jacob@northstar",
+          "---------------",
+          "Name:     Jacob Wiseman",
+          "OS:       IT support, Elkview WV",
+          "Host:     NorthStar IT Services LLC",
+          "Shell:    bash",
+          "School:   CSU Global, B.S. IT, Sept 2027",
+          "Certs:    A+ and Network+, exp Oct 2028",
+          "          ITIL 4 Foundation, Aug 2025",
+          "Desk:     Windows 10/11, macOS, Microsoft 365",
+          "Lab:      Pi 5, Pi-hole, Tailscale, Uptime Kuma",
+        ].join("\n"),
+      },
+    ]);
+  }
+
+  if (key === "fortune") {
+    const jokes = [
+      "A printer is never just a printer. Check the cable, then the driver, then how long the person has been waiting.",
+      "If Wi-Fi works in the kitchen and not the bedroom, the router is not broken. It is in the kitchen.",
+      "\"It works on my machine\" is not a closing note. Write down what you changed.",
+      "DNS is fine until it is not. That is why the Pi runs Pi-hole.",
+    ];
+    const joke = jokes[new Date().getDate() % jokes.length];
+    return entry([{ kind: "text", text: joke }]);
+  }
+
+  if (key === "coffee" || key === "make coffee") {
+    return entry([
+      {
+        kind: "pre",
+        text: "   ( ( )\n    ) )\n  .......\n  |     |",
+      },
+      {
+        kind: "text",
+        text: "One cup. The homelab does not run on it. I do.",
+        tone: "dim",
+      },
+    ]);
+  }
+
+  if (key === "matrix") {
+    return entry([{ kind: "matrix" }]);
+  }
+
+  if (key === "sl") {
+    return entry([
+      { kind: "train" },
+      { kind: "text", text: "Wrong way. The command you wanted was ls.", tone: "dim" },
+    ]);
+  }
+
+  if (key === "ping" || key === "ping recruiter" || key === "ping recruiter.local") {
+    return entry([
+      { kind: "text", text: "PING recruiter (hiring) 56 bytes" },
+      { kind: "text", text: "reply from Elkview, WV: open for IT support" },
+      { kind: "text", text: "1 packet transmitted, 1 received, 0% packet loss", tone: "dim" },
+      {
+        kind: "links",
+        items: [
+          { href: contactEmailHref, label: contactEmailLabel },
+          { href: "/contact/", label: "contact/" },
+        ],
+      },
+    ]);
+  }
+
+  const guess = suggestion(key);
   return entry([
     { kind: "text", text: `command not found: ${command}`, tone: "error" },
-    { kind: "text", text: "Type help for the list.", tone: "dim" },
+    ...(guess
+      ? [{ kind: "suggest" as const, command: guess }]
+      : [{ kind: "text" as const, text: "try typing help", tone: "dim" as const }]),
   ]);
 }
 
@@ -402,13 +642,13 @@ export default function HomeTerminal() {
               {cleared ? <h1 className="sr-only">{person.name}</h1> : null}
               {cleared ? null : (
                 <div className="term-boot">
-                  {boot.map((entry) => (
-                    <Block key={entry.id} entry={entry} />
-                  ))}
+                {boot.map((entry) => (
+                  <Block key={entry.id} entry={entry} onRun={submit} />
+                ))}
                 </div>
               )}
               {history.map((entry) => (
-                <Block key={entry.id} entry={entry} />
+                <Block key={entry.id} entry={entry} onRun={submit} />
               ))}
             </div>
 
@@ -437,10 +677,11 @@ export default function HomeTerminal() {
                 autoCorrect="off"
                 spellCheck={false}
                 autoComplete="off"
-                placeholder="type a command"
+                placeholder="try typing help"
                 aria-describedby="term-hint"
               />
             </form>
+            <p className="term-nudge">try typing help</p>
 
             <div className="term-chips" role="group" aria-label="Commands">
               {chips.map((command) => (
@@ -454,8 +695,9 @@ export default function HomeTerminal() {
               ))}
             </div>
             <p id="term-hint" className="sr-only">
-              Type a command and press Enter, or use the command buttons. help,
-              about, experience, projects, certs, resume, contact, and clear.
+              Try typing help, then press Enter, or use the command buttons.
+              help, about, experience, projects, certs, resume, contact, and
+              clear. A few extra commands are listed by help.
             </p>
           </div>
         </div>

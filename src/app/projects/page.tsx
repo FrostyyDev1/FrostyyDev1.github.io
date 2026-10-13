@@ -15,16 +15,22 @@ export default function ProjectsPage() {
     <main id="main">
       <header className="container page-header">
         <p className="t-label">Work</p>
-        <h1 className="t-h1">Projects</h1>
+        <h1 className="t-h1">
+          Projects <span className="t-serif">I can open.</span>
+        </h1>
         <p className="t-lead">
-          Hands-on projects in networking, self-hosting, and hardware support.
+          A lab I run, a repair business I own, and the builds that sit next
+          to the repairs.
         </p>
       </header>
 
       <section className="container" style={{ paddingBottom: "var(--section)" }}>
         <div className="work-list">
-          {projects.map((project) => (
+          {projects.map((project, index) => (
             <Link key={project.href} href={project.href} className="project-row">
+              <span className="work-num" aria-hidden="true">
+                0{index + 1}
+              </span>
               <div className="thumb-frame">
                 <ProjectArt kind={project.art} />
               </div>

@@ -1,6 +1,6 @@
 ﻿import Link from "next/link";
 
-import CertGrid from "@/components/CertGrid";
+import CertStrip from "@/components/CertStrip";
 import HomeTerminal from "@/components/HomeTerminal";
 import ProjectArt from "@/components/ProjectArt";
 import {
@@ -11,30 +11,115 @@ import {
   roles,
 } from "@/content/site";
 
+const drivers = [
+  "Windows 10/11",
+  "macOS",
+  "Microsoft 365",
+  "Router and Wi-Fi",
+  "Pi-hole",
+  "Tailscale",
+  "Docker",
+  "Uptime Kuma",
+];
+
 export default function HomePage() {
-  const featured = projects.slice(0, 2);
   const preview = roles.slice(0, 4);
 
   return (
     <main id="main">
       <HomeTerminal />
 
+      <section className="section" aria-label="Right now">
+        <div className="container">
+          <ul className="status-row">
+            <li>
+              <Link href="/projects/northstar-it/">
+                <span className="t-label">Now</span>
+                <strong>NorthStar IT</strong>
+                <span>Owner, Elkview</span>
+                <i aria-hidden="true">↗</i>
+              </Link>
+            </li>
+            <li>
+              <Link href="/projects/homelab/">
+                <span className="t-label">Lab</span>
+                <strong>Raspberry Pi 5</strong>
+                <span>Pi-hole, Tailscale</span>
+                <i aria-hidden="true">↗</i>
+              </Link>
+            </li>
+            <li>
+              <Link href="/about/">
+                <span className="t-label">Study</span>
+                <strong>CSU Global</strong>
+                <span>B.S. IT, Sept 2027</span>
+                <i aria-hidden="true">↗</i>
+              </Link>
+            </li>
+            <li>
+              <a href={contactEmailHref}>
+                <span className="t-label">Reach</span>
+                <strong>Email</strong>
+                <span>{contactEmailLabel}</span>
+                <i aria-hidden="true">↗</i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section className="section" aria-labelledby="bench-title">
+        <div className="container">
+          <div className="bench">
+            <article className="bench-lead">
+              <p className="t-label">How the work goes</p>
+              <h2 id="bench-title" className="t-h2">
+                Find the cause. <span className="t-serif">Then prove it.</span>
+              </h2>
+              <ul>
+                <li>Isolate the failure before stacking fixes on the symptom.</li>
+                <li>Say what a repair will cost before the work starts.</li>
+                <li>
+                  Use the machine the way that person will. If the original
+                  problem comes back, it is not done.
+                </li>
+              </ul>
+              <Link className="link-quiet" href="/experience/">
+                Full experience
+              </Link>
+            </article>
+            <article className="bench-stack">
+              <p className="t-label">On the bench</p>
+              <ul className="driver-list">
+                {drivers.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+              <p className="t-small">Tools I actually use. Not a wishlist.</p>
+            </article>
+            <article className="bench-place">
+              <p className="t-label">Based</p>
+              <h3 className="t-h3">Elkview, WV</h3>
+              <p className="t-body">{person.availability}.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
       <section className="section" aria-labelledby="work-title">
         <div className="container">
           <header className="section-head">
             <p className="t-label">Selected work</p>
             <h2 id="work-title" className="t-h2">
-              Two hands-on projects
+              Three things <span className="t-serif">I can open.</span>
             </h2>
-            <p className="t-body">
-              The homelab is where I practice DNS, remote access, and
-              monitoring. NorthStar IT Services is the PC repair and support
-              work I do for people around Charleston.
-            </p>
           </header>
           <div className="work-list">
-            {featured.map((project) => (
+            {projects.map((project, index) => (
               <Link key={project.href} href={project.href} className="project-row">
+                <span className="work-num" aria-hidden="true">
+                  0{index + 1}
+                </span>
                 <div className="thumb-frame">
                   <ProjectArt kind={project.art} />
                 </div>
@@ -54,11 +139,6 @@ export default function HomePage() {
               </Link>
             ))}
           </div>
-          <p style={{ marginTop: 28 }}>
-            <Link className="link-quiet" href="/projects/">
-              All projects
-            </Link>
-          </p>
         </div>
       </section>
 
@@ -67,13 +147,8 @@ export default function HomePage() {
           <header className="section-head">
             <p className="t-label">Experience</p>
             <h2 id="experience-title" className="t-h2">
-              Support, repair, and a front desk
+              Support, repair, <span className="t-serif">and a front desk</span>
             </h2>
-            <p className="t-body">
-              Customer-facing work where I learned to stay calm, write things
-              down, and protect sensitive information, plus the repair business
-              I run.
-            </p>
           </header>
           <div className="home-roles">
             {preview.map((role) => (
@@ -88,7 +163,7 @@ export default function HomePage() {
               </Link>
             ))}
           </div>
-          <p style={{ marginTop: 28 }}>
+          <p style={{ marginTop: 20 }}>
             <Link className="link-quiet" href="/experience/">
               Full experience
             </Link>
@@ -99,16 +174,12 @@ export default function HomePage() {
       <section className="section" id="certifications" aria-labelledby="cert-title">
         <div className="container">
           <header className="section-head">
-            <p className="t-label">Certifications</p>
+            <p className="t-label">~/certs</p>
             <h2 id="cert-title" className="t-h2">
-              Verified credentials
+              Three files, <span className="t-serif">with dates.</span>
             </h2>
-            <p className="t-body">
-              CompTIA A+, CompTIA Network+, and ITIL 4 Foundation. Credential
-              IDs are not listed on this site.
-            </p>
           </header>
-          <CertGrid />
+          <CertStrip />
           <p className="t-small note">
             ITIL is a registered trademark of the PeopleCert group. Used under
             licence from PeopleCert. All rights reserved.

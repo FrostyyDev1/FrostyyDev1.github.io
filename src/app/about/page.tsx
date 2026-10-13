@@ -15,7 +15,9 @@ export default function AboutPage() {
     <main id="main">
       <header className="container page-header">
         <p className="t-label">About</p>
-        <h1 className="t-h1">About</h1>
+        <h1 className="t-h1">
+          Jacob Wiseman, <span className="t-serif">IT support.</span>
+        </h1>
       </header>
 
       <section className="container" style={{ paddingBottom: "var(--section)" }}>

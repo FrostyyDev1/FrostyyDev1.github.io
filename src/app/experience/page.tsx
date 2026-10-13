@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import CertGrid from "@/components/CertGrid";
+import CertStrip from "@/components/CertStrip";
 import {
   education,
   person,
@@ -20,7 +20,9 @@ export default function ExperiencePage() {
     <main id="main">
       <header className="container page-header">
         <p className="t-label">Experience</p>
-        <h1 className="t-h1">Experience</h1>
+        <h1 className="t-h1">
+          Experience, <span className="t-serif">in order.</span>
+        </h1>
         <p className="t-lead">
           Customer-facing roles where I learned to stay calm, document
           carefully, and protect sensitive data, plus my own PC repair work.
@@ -112,12 +114,12 @@ export default function ExperiencePage() {
               Fundamentals I can show
             </h2>
             <p className="t-body">
-              Each one covers a different layer of the work: support,
-              networking, and service management. Credential IDs are not
-              published here.
+              A+ and Network+ for the machine and the network. ITIL 4
+              Foundation for writing down what happened and checking that the
+              fix held. Credential IDs are not published here.
             </p>
           </header>
-          <CertGrid />
+          <CertStrip />
           <p className="t-small note">
             ITIL is a registered trademark of the PeopleCert group. Used under
             licence from PeopleCert. All rights reserved. The résumé PDF lists

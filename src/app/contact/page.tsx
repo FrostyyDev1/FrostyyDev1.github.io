@@ -19,7 +19,7 @@ export default function ContactPage() {
         <div className="container">
           <p className="t-label">Contact</p>
           <h1 className="t-h1" style={{ marginTop: 20, maxWidth: "10em" }}>
-            Contact
+            Say <span className="t-serif">hello.</span>
           </h1>
           <p className="t-lead" style={{ marginTop: 28 }}>
             The fastest way to reach me is email. I am based in {person.location}.{" "}
@@ -29,10 +29,6 @@ export default function ContactPage() {
             {contactEmailLabel}
             <span aria-hidden="true"> →</span>
           </a>
-          <p className="t-small note">
-            TODO: this mailto is a placeholder. Jacob still needs to put his
-            real email address here. A phone number is not published.
-          </p>
 
           <div className="contact-grid">
             <a href={person.linkedin} target="_blank" rel="noopener noreferrer">
