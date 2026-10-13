@@ -71,10 +71,13 @@ useHead({
     <HomeProjects />
     <section id="shell" class="relative pb-10 pt-6 lg:pb-16">
       <div class="relative z-10 mx-auto max-w-7xl px-4 md:px-8">
-        <span class="section-label">Shell</span>
-        <h2 class="section-title mt-4 mb-8">
+        <span class="section-label">{{ t('shell.label') }}</span>
+        <h2 class="section-title mt-4">
           jacob@northstar:~$
         </h2>
+        <p class="mt-4 mb-8 max-w-xl text-base text-muted-foreground">
+          {{ t('shell.intro') }}
+        </p>
         <TerminalShell />
       </div>
     </section>

@@ -15,6 +15,7 @@ onMounted(() => {
 
   const tl = gsap.timeline()
   tl.fromTo('.hero-code-zone', { opacity: 0 }, { opacity: 1, duration: 2, ease: 'power2.out' }, 0)
+  tl.from('.hero-tagline', { opacity: 0, y: 12, duration: 0.6 }, 1.4)
   tl.from('.hero-scroll-indicator', { opacity: 0, duration: 0.6 }, 2.0)
 
   const events = ['scroll', 'pointermove', 'touchstart', 'keydown', 'wheel'] as const
@@ -45,8 +46,10 @@ onMounted(() => {
     </ClientOnly>
 
     <!-- H1 for SSR / SEO / screen readers — canvas paints the name visually but is aria-hidden -->
-    <h1 class="sr-only">Jacob <span class="wiseman">Wiseman</span>, IT support in Elkview, West Virginia</h1>
-    <p class="sr-only">{{ t('hero.baseline') }}</p>
+    <h1 class="sr-only">Jacob <span class="wiseman">Wiseman</span>. {{ t('hero.baseline') }}</h1>
+    <p class="hero-tagline pointer-events-none absolute inset-x-0 bottom-36 z-10 mx-auto max-w-xl px-6 text-center font-display text-2xl leading-tight text-foreground md:bottom-28 md:text-4xl">
+      {{ t('hero.baseline') }}
+    </p>
 
     <!-- Scroll indicator (decorative — visual cue only, not announced to AT) -->
     <div

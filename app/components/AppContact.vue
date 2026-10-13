@@ -57,14 +57,9 @@ animateOnScroll('.contact-location', { y: 20, duration: 0.5, delay: 1.3 })
             </a>
           </div>
 
-          <div class="mt-8">
-            <p class="contact-baseline text-sm text-muted-foreground md:text-base">
-              {{ t('hero.baseline') }}
-            </p>
-            <p class="contact-location mt-2 text-[11px] uppercase tracking-[0.2em] text-muted-foreground/60">
-              {{ t('hero.location') }}
-            </p>
-          </div>
+          <p class="contact-baseline mt-8 max-w-sm text-sm leading-relaxed text-muted-foreground md:text-base">
+            {{ t('contact.note') }}
+          </p>
         </div>
 
         <!-- Right: contact form -->

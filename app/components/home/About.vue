@@ -29,7 +29,7 @@ timelineReveal('.about-timeline')
         <div class="about-image relative w-full aspect-[3/4] md:aspect-auto md:flex-1 md:self-stretch md:min-h-[500px]">
           <HomeAboutPortraitLive
             src="/images/portrait-about.jpg"
-            alt="Placeholder for a photo of Jacob Wiseman. A picture is on the way."
+            alt="A photo of me is on the way. This frame is just a placeholder."
             city="Charleston"
           />
         </div>

@@ -24,8 +24,8 @@ const scroller = ref<HTMLElement | null>(null)
 let nextId = 1
 
 const welcome: TermBlock[] = [
-  { kind: 'text', text: 'Jacob Wiseman — Elkview, in the Charleston, West Virginia area.' },
-  { kind: 'text', text: 'Type help, or press Ctrl K or Cmd K for the command list.' },
+  { kind: 'text', text: 'Type help, or press Ctrl K for the list.' },
+  { kind: 'text', text: 'coffee, fortune, and neofetch are the fun ones.' },
 ]
 
 function scrollDown() {

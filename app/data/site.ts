@@ -42,7 +42,7 @@ export const roles = [
     org: 'NorthStar IT Services LLC',
     place: 'Elkview, WV',
     summary:
-      'Jacob owns NorthStar IT Services LLC, an IT services business based in Elkview and working in the Charleston area.',
+      'I own NorthStar IT Services LLC, an IT services business based in Elkview and working in the Charleston area.',
   },
   {
     id: 'wvu',
@@ -50,7 +50,7 @@ export const roles = [
     org: 'WVU Medicine Thomas Imaging Center',
     place: 'Charleston area',
     summary:
-      'Registration Specialist at WVU Medicine’s Thomas Imaging Center. Patient registration runs in Epic.',
+      'I register patients at WVU Medicine’s Thomas Imaging Center. Registration runs in Epic.',
   },
 ] as const
 
@@ -67,7 +67,7 @@ export const certifications = [
     expires: 'October 2028',
     credly: 'https://www.credly.com/org/comptia/badge/comptia-a-ce-certification',
     summary:
-      'The core credential for hardware, operating systems, and the troubleshooting desktop support is built on.',
+      'The hardware, operating-system, and desk-troubleshooting one.',
   },
   {
     id: 'netplus',
@@ -81,7 +81,7 @@ export const certifications = [
     expires: 'October 2028',
     credly: 'https://www.credly.com/org/comptia/badge/comptia-network-ce-certification',
     summary:
-      'The core credential for network infrastructure, operations, and troubleshooting.',
+      'Infrastructure, operations, and the troubleshooting that happens between machines.',
   },
   {
     id: 'itil',
@@ -95,7 +95,7 @@ export const certifications = [
     expires: null,
     credly: 'https://www.credly.com/org/peoplecert/badge/itil-4-foundation',
     summary:
-      'The foundation credential in IT service management, from PeopleCert.',
+      'Service management, foundation level, from PeopleCert.',
   },
 ] as const
 

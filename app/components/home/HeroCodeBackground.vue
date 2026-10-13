@@ -43,15 +43,10 @@ let subSplitY = 0 // Y coordinate separating name from subtitle for solid text c
 // Letter reveal animation state
 const NAME_TEXT = 'JACOB WISEMAN'
 const ALL_SUB_TEXTS = [
-  'IT SUPPORT ENGINEER',
-  'IT TECHNICIAN',
-  'DESKTOP SUPPORT',
-  'SYSTEMS & NETWORKS',
+  'I KEEP IT WORKING',
+  'COMPUTERS + PEOPLE',
+  'NETWORKS TOO',
   'ELKVIEW, WV',
-  'NORTHSTAR IT',
-  'COMPTIA A+',
-  'COMPTIA NETWORK+',
-  'CSU GLOBAL',
 ]
 let SUB_TEXTS = ALL_SUB_TEXTS
 let currentSubIndex = 0

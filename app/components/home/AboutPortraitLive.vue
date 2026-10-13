@@ -88,12 +88,12 @@ onUnmounted(() => {
 
 // === Status message dictionary (5 slots + pause, FR + EN) ===
 const STATUS: Record<Slot | 'pause', { fr: string, en: string }> = {
-  morning: { fr: 'Open to IT support', en: 'Open to IT support' },
-  afternoon: { fr: 'Email is the way in', en: 'Email is the way in' },
-  evening: { fr: 'Elkview, West Virginia', en: 'Elkview, West Virginia' },
-  night: { fr: 'Email still works', en: 'Email still works' },
-  weekend: { fr: 'Email still works', en: 'Email still works' },
-  pause: { fr: 'Start with an email', en: 'Start with an email' },
+  morning: { fr: 'Coffee, then the desk', en: 'Coffee, then the desk' },
+  afternoon: { fr: 'Tracing something', en: 'Tracing something' },
+  evening: { fr: 'Winding down', en: 'Winding down' },
+  night: { fr: 'Leave a note', en: 'Leave a note' },
+  weekend: { fr: 'Weekend mode', en: 'Weekend mode' },
+  pause: { fr: 'Still here', en: 'Still here' },
 }
 
 const statusMessage = computed(() => {

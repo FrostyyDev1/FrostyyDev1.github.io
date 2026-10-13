@@ -7,9 +7,9 @@ const status = computed(() => props.error?.statusCode ?? 404)
 const notice = computed(() => {
   const path = props.error?.url || ''
   if (status.value === 404) {
-    return `404: ${path || 'that path'} is not on this site. Try help, or go home.`
+    return `404: ${path || 'that path'} isn't a page I made. Try help, or go home.`
   }
-  return `${status.value}: something went wrong. Try help, or go home.`
+  return `${status.value}: something broke. Try help, or go home.`
 })
 
 useHead({
@@ -34,7 +34,7 @@ onMounted(() => {
         jacob@northstar:~$
       </p>
       <h1 class="mb-6 font-display text-4xl font-bold text-foreground md:text-5xl">
-        <span class="wiseman">Wiseman</span> is here. This path is not.
+        I looked. This path isn't here.
       </h1>
       <TerminalShell :notice="notice" />
       <div class="mt-8 flex flex-wrap gap-3">
@@ -48,7 +48,7 @@ onMounted(() => {
           href="mailto:jacob.wiseman345@gmail.com"
           class="inline-flex rounded-full bg-foreground px-5 py-2.5 text-sm font-semibold text-background"
         >
-          Email Jacob
+          Email me
         </a>
       </div>
     </main>

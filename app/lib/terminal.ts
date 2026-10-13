@@ -22,10 +22,10 @@ export type TermResult = {
 
 export const commands = [
   { name: 'help', blurb: 'List commands' },
-  { name: 'about', blurb: 'Who Jacob is' },
-  { name: 'certs', blurb: 'Credentials on file' },
-  { name: 'contact', blurb: 'Email and links' },
-  { name: 'sudo hire-jacob', blurb: 'Hiring note' },
+  { name: 'about', blurb: 'Who I am' },
+  { name: 'certs', blurb: 'What I passed' },
+  { name: 'contact', blurb: 'How to reach me' },
+  { name: 'sudo hire-jacob', blurb: 'If you are hiring' },
   { name: 'neofetch', blurb: 'A small snapshot' },
   { name: 'coffee', blurb: 'Brew status' },
   { name: 'fortune', blurb: 'One short note' },
@@ -37,8 +37,8 @@ const fortunes = [
   'If it only works while you are watching, it is not fixed.',
   'Write the symptom the way the person said it, then translate.',
   'A calm explanation is part of the repair.',
-  'September 2027 is circled. The work before then still counts.',
-  'Elkview mornings and Charleston afternoons, same careful troubleshooting.',
+  'Unplug it once before you order a new one.',
+  'The person is part of the system. Start there.',
 ]
 
 function normalize(input: string) {
@@ -111,7 +111,7 @@ function help(): TermResult {
       },
       {
         kind: 'text',
-        text: 'Tab completes a command. Up and down walk through history.',
+        text: 'Tab finishes a word. Up and down walk through what you already typed.',
       },
     ],
   }
@@ -120,11 +120,7 @@ function help(): TermResult {
 function about(): TermResult {
   return {
     blocks: [
-      { kind: 'text', text: `${person.name} — ${person.locationLong}.` },
-      {
-        kind: 'text',
-        text: `Looking for ${person.seeking.join(', ')} roles.`,
-      },
+      { kind: 'text', text: "I'm in Elkview. Jobs and school are the lines below." },
       {
         kind: 'kv',
         rows: [
@@ -139,7 +135,7 @@ function about(): TermResult {
         kind: 'links',
         links: [
           { href: '/#about', label: 'About' },
-          { href: '/projets', label: 'Selected work' },
+          { href: '/projets', label: 'The work' },
         ],
       },
     ],
@@ -154,10 +150,11 @@ function certs(): TermResult {
 
   return {
     blocks: [
+      { kind: 'text', text: 'What I have passed, with the dates.' },
       { kind: 'pre', text: lines.join('\n') },
       {
         kind: 'links',
-        links: [{ href: '/certifications', label: 'Open the certifications page' }],
+        links: [{ href: '/certifications', label: 'The badge wall' }],
       },
     ],
   }
@@ -168,7 +165,7 @@ function contact(): TermResult {
     blocks: [
       {
         kind: 'text',
-        text: 'Email is the way to reach Jacob. A phone number is not published.',
+        text: 'Email me. I do not publish a phone number.',
       },
       {
         kind: 'kv',
@@ -181,7 +178,7 @@ function contact(): TermResult {
       {
         kind: 'links',
         links: [
-          { href: contactEmailHref, label: 'Email Jacob' },
+          { href: contactEmailHref, label: 'Email me' },
           { href: person.linkedin, label: 'LinkedIn' },
           { href: '/#contact', label: 'Contact' },
         ],
@@ -195,7 +192,7 @@ function hire(): TermResult {
     blocks: [
       {
         kind: 'text',
-        text: 'No password is collected here. Hiring starts with an email.',
+        text: 'No password. If you want to hire me, send the email.',
       },
       {
         kind: 'kv',
@@ -232,7 +229,7 @@ function neofetch(): TermResult {
           'focus     desktop · systems · networking',
           'school    CSU Global',
           'degree    B.S. IT · Sept 2027',
-          'shell     portfolio',
+          'shell     this page',
         ].join('\n'),
       },
     ],
@@ -245,7 +242,7 @@ function coffee(): TermResult {
       { kind: 'text', text: 'Kettle’s on.' },
       {
         kind: 'text',
-        text: 'One cup, then back to the desk. The next device can wait until the mug is down.',
+        text: 'One cup, then the desk. The next device can wait until the mug is down.',
       },
     ],
   }
