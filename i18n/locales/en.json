@@ -39,7 +39,7 @@
     "p2": "I like the moment someone who was stuck gets moving again. That's the part I stay for.",
     "p3": "Happy to talk through a desk, a network, or a role.",
     "label": "About",
-    "experienceLabel": "Where my days go",
+    "experienceLabel": "Work and school",
     "exp1": {
       "company": "NorthStar IT Services LLC",
       "role": "Owner",
@@ -49,8 +49,8 @@
     "exp2": {
       "company": "WVU Medicine Thomas Imaging Center",
       "role": "Registration Specialist",
-      "period": "Epic",
-      "clients": "I register patients."
+      "period": "Previously",
+      "clients": "I registered patients in Epic."
     },
     "exp3": {
       "company": "CSU Global",
@@ -139,7 +139,7 @@
     "items": {
       "custom": {
         "title": "Epic",
-        "desc": "The system I register patients in."
+        "desc": "The system I registered patients in."
       },
       "redesign": {
         "title": "Desktop support",
@@ -206,15 +206,15 @@
       },
       "thomas-imaging": {
         "seoTitle": "Thomas Imaging Center · Jacob Wiseman",
-        "description": "The imaging-center work.",
-        "longDescription": "I'm a Registration Specialist at WVU Medicine’s Thomas Imaging Center. The patients come in, and I register them. That registration runs in Epic.",
-        "approach": "I check patients in. Registration runs in Epic.",
-        "takeaway1": "The title is Registration Specialist.",
-        "takeaway2": "The place is WVU Medicine Thomas Imaging Center.",
-        "takeaway3": "Epic is the system the registration runs in.",
+        "description": "Previously. I registered patients in Epic.",
+        "longDescription": "I was a Registration Specialist at WVU Medicine's Thomas Imaging Center, registering patients in Epic.",
+        "approach": "I registered patients in Epic.",
+        "takeaway1": "Past role: Registration Specialist.",
+        "takeaway2": "WVU Medicine Thomas Imaging Center.",
+        "takeaway3": "Patient registration ran in Epic.",
         "stackNote": "Epic, for patient registration.",
-        "result": "It's the day job next to the business I own.",
-        "seoDescription": "I'm a Registration Specialist at WVU Medicine Thomas Imaging Center. Patient registration runs in Epic."
+        "result": "Past role.",
+        "seoDescription": "I was a Registration Specialist at WVU Medicine's Thomas Imaging Center, registering patients in Epic."
       },
       "comptia-a-plus": {
         "seoTitle": "CompTIA A+ · Jacob Wiseman",
@@ -267,7 +267,7 @@
   },
   "clients": {
     "label": "Places",
-    "title": "Where I show up."
+    "title": "Places in the work."
   },
   "contact": {
     "label": "Contact",
@@ -318,7 +318,7 @@
     "title": "The longer versions.",
     "intro": "The longer write-ups.",
     "seoTitle": "Work · Jacob Wiseman",
-    "seoDescription": "NorthStar IT Services LLC, registration at Thomas Imaging, and the degree I'm finishing."
+    "seoDescription": "NorthStar IT Services LLC, a past registration role at Thomas Imaging, and the degree I'm finishing."
   },
   "certsPage": {
     "label": "Certs",

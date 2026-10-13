@@ -28,6 +28,7 @@ export const projects: Project[] = [
     accentColor: '#c4a574',
     bentoSize: 'm',
     takeawaysCount: 3,
+    year: 'Previously',
     role: 'Registration Specialist',
   },
   {

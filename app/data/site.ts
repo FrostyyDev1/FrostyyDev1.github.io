@@ -50,7 +50,7 @@ export const roles = [
     org: 'WVU Medicine Thomas Imaging Center',
     place: 'Charleston area',
     summary:
-      'I register patients at WVU Medicine’s Thomas Imaging Center. Registration runs in Epic.',
+      "I was a Registration Specialist at WVU Medicine's Thomas Imaging Center, registering patients in Epic.",
   },
 ] as const
 
