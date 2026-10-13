@@ -17,12 +17,10 @@ export default function HomePage() {
     <main id="main">
       <section className="hero wrap">
         <div className="hero-grid">
-          <div className="rise">
+          <div className="rise hero-title">
             <p className="eyebrow">Elkview / Charleston, WV</p>
             <h1>
-              Jacob
-              <br />
-              Wiseman
+              Jacob <span className="hero-surname">Wiseman</span>
             </h1>
           </div>
           <div className="hero-aside rise" style={{ animationDelay: "80ms" }}>
