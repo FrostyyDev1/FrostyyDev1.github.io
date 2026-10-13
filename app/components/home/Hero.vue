@@ -47,7 +47,7 @@ onMounted(() => {
 
     <!-- H1 for SSR / SEO / screen readers — canvas paints the name visually but is aria-hidden -->
     <h1 class="sr-only">Jacob <span class="wiseman">Wiseman</span>. {{ t('hero.baseline') }}</h1>
-    <p class="hero-tagline pointer-events-none absolute inset-x-0 bottom-36 z-10 mx-auto max-w-xl px-6 text-center font-display text-2xl leading-tight text-foreground md:bottom-28 md:text-4xl">
+    <p aria-hidden="true" class="hero-tagline pointer-events-none absolute inset-x-0 bottom-36 z-10 mx-auto max-w-xl px-6 text-center font-display text-2xl leading-tight text-foreground md:bottom-28 md:text-4xl">
       {{ t('hero.baseline') }}
     </p>
 
