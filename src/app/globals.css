@@ -311,7 +311,8 @@ p, h1, h2, h3, ul, ol, dl { margin: 0; }
 
 .hero {
   min-height: 100vh;
-  padding: 132px 0 0;
+  padding: 148px 0 0;
+  margin-bottom: 42px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -503,7 +504,7 @@ p, h1, h2, h3, ul, ol, dl { margin: 0; }
 
 .method-track {
   padding: 28px 26px;
-  min-height: 520px;
+  min-height: 480px;
 }
 
 .method-track ol {
@@ -558,7 +559,7 @@ p, h1, h2, h3, ul, ol, dl { margin: 0; }
 
 .method-cards article:hover,
 .about-cards article:hover,
-.egg-grid button:hover,
+.egg:hover,
 .rail-card:hover {
   transform: translateY(-4px);
   border-color: var(--line-strong);
@@ -594,11 +595,15 @@ p, h1, h2, h3, ul, ol, dl { margin: 0; }
 
 .text-link:hover { color: var(--sage-text); }
 
+.about-home { min-height: 560px; align-items: center; }
+
 .about-cards {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
 }
+
+.about-cards article { min-height: 168px; }
 
 .about-cards p:last-child { margin-top: 8px; color: var(--muted); }
 
@@ -651,7 +656,7 @@ p, h1, h2, h3, ul, ol, dl { margin: 0; }
   text-decoration: none;
 }
 
-.rail-card header {
+.rail-meta {
   display: flex;
   gap: 16px;
   color: var(--muted);
@@ -659,7 +664,7 @@ p, h1, h2, h3, ul, ol, dl { margin: 0; }
   letter-spacing: 0.04em;
 }
 
-.rail-card header span:first-child { color: var(--sage-text); }
+.rail-meta span:first-child { color: var(--sage-text); }
 
 .rail-card h3 {
   margin-top: 18px;
@@ -677,7 +682,7 @@ p, h1, h2, h3, ul, ol, dl { margin: 0; }
 
 .rail-art {
   margin-top: auto;
-  height: 280px;
+  height: 340px;
   border-radius: 22px 22px 0 0;
   overflow: hidden;
   background: #19191c;
@@ -796,7 +801,7 @@ p, h1, h2, h3, ul, ol, dl { margin: 0; }
   grid-template-columns: 160px minmax(0, 1fr) auto;
   gap: 16px;
   align-items: center;
-  padding: 22px 4px;
+  padding: 28px 4px;
   border-top: 1px solid var(--line);
   text-decoration: none;
 }
@@ -829,45 +834,53 @@ p, h1, h2, h3, ul, ol, dl { margin: 0; }
 
 .explore-layout { align-items: start; }
 
-.shell-bay { display: grid; gap: 12px; min-width: 0; }
+.shell-bay {
+  display: grid;
+  grid-template-columns: 1.45fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 12px;
+  min-width: 0;
+  min-height: 420px;
+}
 
 .bay-shell {
+  grid-row: 1 / span 2;
   padding: 16px 16px 14px;
-  min-height: 360px;
+  min-height: 0;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.egg-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 12px;
-  margin: 0;
-}
-
-.egg-grid button {
-  width: 100%;
-  min-height: 112px;
+.egg {
+  min-height: 0;
   padding: 16px;
   text-align: left;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 24px;
   transition: transform 0.35s ease, border-color 0.35s ease;
 }
 
-.egg-grid span {
-  font-family: var(--font-display), Georgia, serif;
-  font-size: 1.35rem;
+.egg:hover {
+  transform: translateY(-4px);
+  border-color: var(--line-strong);
 }
 
-.egg-grid small { color: var(--muted); }
+.egg span {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 1.45rem;
+}
+
+.egg small { color: var(--muted); }
 
 .closer { border-top: 1px solid var(--line); }
 
 .closer-copy {
-  min-height: 460px;
+  min-height: 520px;
   display: grid;
   place-items: center;
   align-content: center;
@@ -971,7 +984,7 @@ p, h1, h2, h3, ul, ol, dl { margin: 0; }
 
 .site-footer {
   border-top: 1px solid var(--line);
-  padding: 48px 0 36px;
+  padding: 72px 0 56px;
 }
 
 .footer-grid {
@@ -1452,7 +1465,9 @@ p, h1, h2, h3, ul, ol, dl { margin: 0; }
   .hero-stats article:nth-child(odd) { border-right: 1px solid var(--line); }
   .hero-stats article:nth-child(2) { border-right: 0; }
   .hero-stats article { border-bottom: 1px solid var(--line); }
-  .about-cards, .egg-grid { grid-template-columns: 1fr 1fr; }
+  .about-cards { grid-template-columns: 1fr 1fr; }
+  .shell-bay { grid-template-columns: 1fr 1fr; min-height: 0; }
+  .bay-shell { grid-column: 1 / -1; grid-row: auto; min-height: 320px; }
   .record { grid-template-columns: 1fr auto; }
   .record time { grid-column: 1 / -1; }
   .record-head { flex-direction: column; align-items: flex-start; }
@@ -1470,7 +1485,7 @@ p, h1, h2, h3, ul, ol, dl { margin: 0; }
   .hero-card:hover,
   .method-cards article:hover,
   .about-cards article:hover,
-  .egg-grid button:hover,
+  .egg:hover,
   .rail-card:hover,
   .hero-profile:hover .monogram,
   .record:hover .go { transform: none; }

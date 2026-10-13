@@ -124,11 +124,11 @@ export function WorkRail() {
         {items.map((item) => (
           <article key={item.index} className="rail-card" data-card>
             <Link href={item.href}>
-              <header>
+              <div className="rail-meta">
                 <span>{item.index}</span>
                 <span>{item.kind}</span>
                 <span>{item.when}</span>
-              </header>
+              </div>
               <h3>{item.title}</h3>
               <p>{item.text}</p>
               <div className={`rail-art art-${item.art}`} aria-hidden="true">

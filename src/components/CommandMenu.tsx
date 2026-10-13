@@ -37,9 +37,9 @@ export function CommandMenu() {
         aria-haspopup="dialog"
         aria-expanded={open}
         aria-controls="command-palette"
+        aria-label="Open commands"
         onClick={() => setOpen(true)}
       >
-        Commands
         <kbd>Ctrl K</kbd>
       </button>
       <dialog

@@ -25,16 +25,12 @@ export function ShellBay() {
         </div>
         <Shell listen />
       </article>
-      <ul className="egg-grid">
-        {eggs.map((egg) => (
-          <li key={egg.command}>
-            <button type="button" onClick={() => run(egg.command)}>
-              <span>{egg.label}</span>
-              <small>{egg.note}</small>
-            </button>
-          </li>
-        ))}
-      </ul>
+      {eggs.map((egg) => (
+        <button key={egg.command} type="button" className="egg" onClick={() => run(egg.command)}>
+          <span>{egg.label}</span>
+          <small>{egg.note}</small>
+        </button>
+      ))}
     </div>
   );
 }
