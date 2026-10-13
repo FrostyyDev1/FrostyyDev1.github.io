@@ -1,110 +1,78 @@
-﻿import type { Metadata } from "next";
+﻿import type { Metadata, Viewport } from "next";
+import { IBM_Plex_Mono, Outfit, Syne } from "next/font/google";
 
-import {
-  Geist_Mono,
-  Instrument_Serif,
-  Space_Grotesk,
-} from "next/font/google";
+import { SiteFooter } from "@/components/SiteFooter";
+import { SiteHeader } from "@/components/SiteHeader";
+import { person, siteUrl } from "@/content/site";
 
 import "./globals.css";
 
-const spaceGrotesk = Space_Grotesk({
+const display = Syne({
+  subsets: ["latin"],
+  variable: "--font-display",
+  display: "swap",
+  weight: ["500", "600", "700", "800"],
+});
+
+const sans = Outfit({
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
+  weight: ["400", "500", "600"],
 });
 
-const geistMono = Geist_Mono({
+const mono = IBM_Plex_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
   display: "swap",
+  weight: ["400", "500"],
 });
 
-const instrumentSerif = Instrument_Serif({
-  subsets: ["latin"],
-  weight: "400",
-  variable: "--font-serif",
-  display: "swap",
-});
-
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ??
-  "http://localhost:3000";
-
-const title =
-  "Jacob Wiseman — IT Portfolio";
-
+const title = "Jacob Wiseman — IT Support";
 const description =
-  "IT support, networking, infrastructure, systems, homelab projects, and technical work by Jacob Wiseman.";
+  "Jacob Wiseman in Elkview and Charleston, West Virginia. Looking for IT Support Engineer, IT technician, desktop support, and systems and networking roles.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-
   title: {
     default: title,
     template: "%s — Jacob Wiseman",
   },
-
   description,
-
-  applicationName:
-    "Jacob Wiseman Portfolio",
-
-  authors: [
-    {
-      name: "Jacob Wiseman",
-    },
-  ],
-
-  creator: "Jacob Wiseman",
-
+  applicationName: "Jacob Wiseman",
+  authors: [{ name: person.name }],
+  creator: person.name,
   openGraph: {
     title,
     description,
     url: "/",
-    siteName:
-      "Jacob Wiseman Portfolio",
+    siteName: person.name,
     type: "website",
     locale: "en_US",
-
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Jacob Wiseman — IT Portfolio",
+        alt: "Jacob Wiseman, IT support in Elkview, West Virginia",
       },
     ],
   },
-
   twitter: {
-    card:
-      "summary_large_image",
-
+    card: "summary_large_image",
     title,
     description,
-
-    images: [
-      "/og-image.png",
-    ],
+    images: ["/og-image.png"],
   },
-
-  robots: {
-    index: true,
-    follow: true,
-  },
-
+  robots: { index: true, follow: true },
   icons: {
-    icon: [
-      {
-        url: "/favicon.ico",
-      },
-      {
-        url: "/icon.svg",
-        type: "image/svg+xml",
-      },
-    ],
+    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#141210",
+  colorScheme: "dark",
 };
 
 export default function RootLayout({
@@ -115,18 +83,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      data-scroll-behavior="smooth"
+      className={`${display.variable} ${sans.variable} ${mono.variable}`}
     >
-      <body
-        className={`
-          ${spaceGrotesk.variable}
-          ${geistMono.variable}
-          ${instrumentSerif.variable}
-        `}
-      >
+      <body>
+        <SiteHeader />
         {children}
+        <SiteFooter />
       </body>
     </html>
   );
 }
-
