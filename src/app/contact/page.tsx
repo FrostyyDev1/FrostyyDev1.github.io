@@ -1,21 +1,69 @@
-import Navbar from "@/components/Navbar";
+import type { Metadata } from "next";
+
+import {
+  contactEmail,
+  contactEmailHref,
+  person,
+} from "@/content/site";
+
+export const metadata: Metadata = {
+  title: "Contact",
+  description:
+    "Email Jacob Wiseman at jacob.wiseman345@gmail.com about IT support, desktop support, and systems and networking roles in the Charleston, West Virginia area.",
+};
 
 export default function ContactPage() {
   return (
-    <main className="min-h-screen bg-[#090909] text-white">
-      <div className="mx-auto w-full max-w-[1800px] px-6 md:px-10 lg:px-14 xl:px-16">
-        <Navbar />
+    <main id="main" className="page">
+      <header className="page-hero wrap">
+        <p className="eyebrow">Contact</p>
+        <h1>Email is the direct line.</h1>
+        <p className="lede">
+          {person.name} is in {person.locationLong}. A phone number is not
+          published.
+        </p>
+      </header>
 
-        <section className="py-24 md:py-32">
-          <p className="mb-6 text-sm uppercase tracking-[0.2em] text-neutral-500">
-            04 / Contact
-          </p>
-
-          <h1 className="text-[clamp(4rem,9vw,10rem)] font-medium uppercase leading-[0.8] tracking-[-0.06em]">
-            Let's Talk
-          </h1>
-        </section>
-      </div>
+      <section className="wrap contact-sheet" aria-labelledby="mail-heading">
+        <h2 id="mail-heading" className="sr-only">
+          Email
+        </h2>
+        <a className="email-link" href={contactEmailHref}>
+          {contactEmail}
+        </a>
+        <ul className="contact-sheet-list">
+          <li>
+            <a href={person.linkedin} target="_blank" rel="noopener noreferrer">
+              <span>LinkedIn</span>
+              <strong>
+                {person.linkedinLabel}
+                <span className="sr-only"> (opens in a new tab)</span>
+              </strong>
+            </a>
+          </li>
+          <li>
+            <a href={person.businessUrl} target="_blank" rel="noopener noreferrer">
+              <span>Business</span>
+              <strong>
+                {person.business}
+                <span className="sr-only"> (opens in a new tab)</span>
+              </strong>
+            </a>
+          </li>
+          <li>
+            <div>
+              <span>Location</span>
+              <strong>{person.location}</strong>
+            </div>
+          </li>
+          <li>
+            <div>
+              <span>Open to</span>
+              <strong>{person.seeking.join(" · ")}</strong>
+            </div>
+          </li>
+        </ul>
+      </section>
     </main>
   );
 }

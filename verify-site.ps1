@@ -52,18 +52,12 @@ function Test-Url {
 
 $CorePaths = @(
     "/",
-    "/experience",
-    "/projects",
-    "/projects/homelab",
-    "/projects/northstar-it",
-    "/projects/custom-pcs",
     "/about",
+    "/experience",
+    "/certifications",
     "/contact",
-    "/resume.pdf",
-    "/jacob-photo.jpg",
-    "/favicon.ico",
     "/icon.svg",
-    "/opengraph-image"
+    "/og-image.png"
 )
 
 Write-Host "Core routes"
@@ -79,11 +73,9 @@ Write-Host ""
 
 $PagesToCrawl = @(
     "/",
-    "/experience",
-    "/projects",
-    "/projects/homelab",
-    "/projects/northstar-it",
     "/about",
+    "/experience",
+    "/certifications",
     "/contact"
 )
 
