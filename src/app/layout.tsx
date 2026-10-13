@@ -1,109 +1,74 @@
 ﻿import type { Metadata } from "next";
+import { Instrument_Sans, Instrument_Serif, JetBrains_Mono } from "next/font/google";
 
-import {
-  Geist_Mono,
-  Instrument_Serif,
-  Space_Grotesk,
-} from "next/font/google";
+import SiteFooter from "@/components/SiteFooter";
+import SiteNav from "@/components/SiteNav";
+import { person, siteUrl } from "@/content/site";
 
 import "./globals.css";
 
-const spaceGrotesk = Space_Grotesk({
+const sans = Instrument_Sans({
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
 });
 
-const geistMono = Geist_Mono({
+const serif = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  variable: "--font-serif",
+  display: "swap",
+});
+
+const mono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
   display: "swap",
 });
 
-const instrumentSerif = Instrument_Serif({
-  subsets: ["latin"],
-  weight: "400",
-  variable: "--font-serif",
-  display: "swap",
-});
-
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ??
-  "http://localhost:3000";
-
-const title =
-  "Jacob Wiseman — IT Portfolio";
-
+const title = "Jacob Wiseman — IT Support";
 const description =
-  "IT support, networking, infrastructure, systems, homelab projects, and technical work by Jacob Wiseman.";
+  "Jacob Wiseman, IT support in Elkview, West Virginia. CompTIA A+, Network+, and ITIL 4 Foundation. Desktop support, homelab, and PC repair.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-
   title: {
     default: title,
     template: "%s — Jacob Wiseman",
   },
-
   description,
-
-  applicationName:
-    "Jacob Wiseman Portfolio",
-
-  authors: [
-    {
-      name: "Jacob Wiseman",
-    },
-  ],
-
-  creator: "Jacob Wiseman",
-
+  applicationName: "Jacob Wiseman",
+  authors: [{ name: person.name }],
+  creator: person.name,
   openGraph: {
     title,
     description,
     url: "/",
-    siteName:
-      "Jacob Wiseman Portfolio",
+    siteName: "Jacob Wiseman",
     type: "website",
     locale: "en_US",
-
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Jacob Wiseman — IT Portfolio",
+        alt: "Jacob Wiseman — IT support, desktop support, and networking",
       },
     ],
   },
-
   twitter: {
-    card:
-      "summary_large_image",
-
+    card: "summary_large_image",
     title,
     description,
-
-    images: [
-      "/og-image.png",
-    ],
+    images: ["/og-image.png"],
   },
-
   robots: {
     index: true,
     follow: true,
   },
-
   icons: {
-    icon: [
-      {
-        url: "/favicon.ico",
-      },
-      {
-        url: "/icon.svg",
-        type: "image/svg+xml",
-      },
-    ],
+    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
   },
 };
 
@@ -115,18 +80,16 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      data-scroll-behavior="smooth"
+      className={`${sans.variable} ${serif.variable} ${mono.variable}`}
     >
-      <body
-        className={`
-          ${spaceGrotesk.variable}
-          ${geistMono.variable}
-          ${instrumentSerif.variable}
-        `}
-      >
-        {children}
+      <body>
+        <a className="skip" href="#main">
+          Skip to content
+        </a>
+        <SiteNav />
+        <div id="top">{children}</div>
+        <SiteFooter />
       </body>
     </html>
   );
 }
-
